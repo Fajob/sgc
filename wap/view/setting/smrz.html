@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta id="i18n_pagename" content="common">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="public/css/sgc/sgc_style.css" />
+		<script type="text/javascript" src="public/js/jquery-2.1.4.min.js" ></script>
+		<script src="public/js/layer/layer.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js" ></script>
+		<title></title>
+		<style>
+			#file{
+			    float: left;
+			    width: 100%;
+			    height: 50px;
+			    position: absolute;
+			    right: 0;
+			    opacity: 0;
+			}
+			.uploadInput{
+				width: 80px;
+			    height: 80px;
+			    margin-top: 50px;
+			    opacity: 0;
+			}
+			.sgc_smrz2 p input{
+				width: 100%;
+			    line-height: 40px;
+			    margin-top: 20px;
+			    border: none;
+			    background-color: #fff;
+			    /*padding-left: 10px;*/
+			}
+		</style>
+	</head>
+	<body style="background-color: #f3f3f3;">
+		<div class="sgc_myInfo_smrz">
+			<div class="nav_bg">
+				<div class="nav">
+					<a class="sgc_myInfo_smrz_back" href="javascript:history.back(-1);" style="color: #FFFFFF;"><img src="public/web/images/sgc/back_arrow.png" />
+						<label class="i18n" name="i18nSmrz"></label>
+					</a>
+				</div>
+			</div>
+			<div class="sgc_myInfo_smrz_upload">
+				<!--<div class="sgc_myInfo_smrz_idcardTop">
+					<div class="exUpload"><img class="hide" src="" id="uploadFileT"/></div>
+					<input name="fileT" type="file" id="fileT" class="uploadInput"/>
+					<p style="margin-top: 20px;color: gray;">上传身份证正面照</p>
+				</div>
+				<div class="sgc_myInfo_smrz_idcardBottom">
+					<div class="exUpload"><img class="hide" src="" id="uploadFileB"/></div>
+					<input name="fileB" type="file" id="fileB" class="uploadInput"/>
+					<p style="margin-top: 20px;color: gray;">上传身份证背面照</p>
+				</div>-->
+				<div class="sgc_smrz2" style="padding: 5%;">
+					<p style="font-size: 12px;padding: 10px;background-color: pink;color: red;" class="i18n" name="i18nSmrzNotice"></p>
+					<p>
+						<input name="sgc_smrz_name" type="text" class="i18n-input" selectname="i18nSmrzInputRealName" selectattr="placeholder" />
+					</p>
+					<p>
+						<input name="sgc_smrz_ID" type="text" class="i18n-input" selectname="i18nSmrzInputID" selectattr="placeholder" />
+					</p>
+					<p>
+						<input name="sgc_smrz_bank" type="text" class="i18n-input" selectname="i18nSmrzInputBankNum" selectattr="placeholder" />
+					</p>
+				</div>
+				<div class="sgc_confirm_box" style="padding-top: 40px;">
+					<button class="sgc_confirm1 i18n" name="i18nVerified" type="button"></button>
+				</div>
+			</div>
+		</div>
+		<script>
+			//上传身份证正面照
+			/*var user_id = $("#fileT").attr("name");
+			$("#fileT").change(function(){
+				var file = this.files[0];
+				var reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onload = function(){
+					$("#uploadFileT").attr("src",this.result);
+					$("#uploadFileT").removeClass('hide');
+					$.ajax({
+						type:"post",
+						url:"api/index.php?ctl=image&act=user_avastar",
+						data:{"id":user_id,"image":this.result},
+						dataType:"json",
+						success:function(data){
+							if(data.status == true){
+								layer.msg(data.msg, function(){
+									window.location.reload();
+								});
+							}else{
+								layer.msg(data.msg, function(){
+								
+								});
+							}
+						}
+					});
+				}
+			})*/
+			//上传身份证背面照
+			/*var user_id = $("#fileB").attr("name");
+			$("#fileB").change(function(){
+				var file = this.files[0];
+				var reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onload = function(){
+					$("#uploadFileB").attr("src",this.result);
+					$("#uploadFileB").removeClass('hide');
+					$.ajax({
+						type:"post",
+						url:"api/index.php?ctl=image&act=user_avastar",
+						data:{"id":user_id,"image":this.result},
+						dataType:"json",
+						success:function(data){
+							if(data.status == true){
+								layer.msg(data.msg, function(){
+									window.location.reload();
+								});
+							}else{
+								layer.msg(data.msg, function(){
+								
+								});
+							}
+						}
+					});
+				}
+			})*/
+			$('.sgc_confirm1').click(function(){
+				var id='{%$user_info.id%}'
+				var name=$('input[name="sgc_smrz_name"]').val();
+				var idcard=$('input[name="sgc_smrz_ID"]').val();
+				var banknum=$('input[name="sgc_smrz_bank"]').val();
+				if(!name){
+					alert('姓名不能为空');
+					return;
+				}
+				if(!/^\d{17}(\d|x)$/i.test(idcard)){
+					alert('您输入的身份证长度或格式错误');
+					return;
+				}
+				if(!/^[0-9]*$/.test(banknum)||!banknum){
+					alert('您输入的银行卡号长度或格式错误');
+					return;
+				}
+				$.post('/api/index.php?ctl=user&act=save_renzheng',{'id':id,'real_name':name,'idNum':idcard,'bankNum':banknum},function(data){
+					if(data){
+						var obj = eval('(' + data + ')');
+						if(obj.status == true){
+							layer.msg(obj.msg, function(){
+								window.location.href = "index.php?ctl=setting";
+							});
+						}
+						else
+						{	
+							layer.msg(obj.msg, function(){
+								
+							});
+						}
+					}
+					else{
+						alert('服务器返回一个错误');
+					}
+				})
+			})
+		</script>
+	</body>
+</html>

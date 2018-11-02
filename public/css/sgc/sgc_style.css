@@ -1,0 +1,828 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+	font-size: 16px;
+}
+body{
+	min-height: 680px;
+	background-color: #fff;
+	margin-top: 62px;
+	margin-bottom: 56px;
+}
+table{
+	border-collapse: collapse;
+}
+a{
+	color: #000;
+	text-decoration: none;
+}
+.sgc_active{
+	color: #D9B140;
+}
+.hide,.none{
+	display: none !important;
+}
+/*顶部导航栏*/
+.nav_bg{
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 99;
+	background-color: #D9B140;
+	border-bottom: 1px solid #D3D3D3;
+	padding: 20px 5%;
+	color: #FFFFFF;
+	margin-bottom: 62px;
+}
+.nav img{
+	width: 8px;
+	margin-right: 5px;
+}
+/*登录页面-注册页面*/
+.sgc_login_reg{
+	padding: 20px 30px;
+	margin-bottom: 20px;
+}
+.sgc_login_reg img{
+	margin-left: 5px;
+	height: 12px;
+}
+.sgc_login_logo{
+	text-align: center;
+	padding-top: 20px;
+}
+.sgc_login_logo img{
+	width: 100px;
+}
+.sgc_login_form{
+	padding: 30px;
+}
+.sgc_login_form p{
+	padding-top: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #d3d3d3;
+}
+.sgc_login_form p input{
+	height: 30px;
+	width: 85%;
+	margin-left: 10px;
+	border: none;
+	outline: none;
+	font-size: 16px;
+}
+.sgc_login_form p img{
+	float: left;
+	height: 30px;
+	width: 20px;
+}
+.sgc_login_verifyCode{
+	width: 80px;
+    height: 30px;
+    background-color: red;
+    display: inline-block;
+    position: relative;
+    float: right;
+}
+.sgc_login_btn{
+	padding: 50px 30px 30px 30px;
+}
+.sgc_login_btn button{
+	width: 100%;
+	height: 50px;
+	background-color: #d9b140;
+	color: #FFFFFF;
+	font-size: 18px;
+	border: none;
+	outline: none;
+}
+.sgc_login_agreement{
+	text-align: center;
+	font-size: 14px;
+}
+.sgc_login_agreement a{
+	color: #d9633F;
+}
+.sgc_login_msgVerifyCode{
+	width: 100px;
+    background-color: #7291e3;
+    display: inline-block;
+    position: relative;
+    float: right;
+    text-align: center;
+    border-radius: 25px;
+    line-height: 35px;
+    color: #FFFFFF;
+}
+/*首页*/
+.sgc_home_title{
+	float: left;
+    width: 100%;
+	background: url(../../web/images/sgc/area.png);
+	background-size: 100% 100%;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	border-radius: 220px/20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.sgc_home_title div{
+	width: 50%;
+	text-align: center;
+	float: left;
+}
+.sgc_home_title_line{
+	position: absolute;
+	width: 1px;
+	height: 60px;
+	background-color: #fff;
+	margin-top: 55px;
+}
+.sgc_home_charts{
+	margin-top: 25px;
+	height: 300px;
+	width: 90%;
+	margin-left: 5%;
+}
+.sgc_home_detail table{
+	width: 100%;
+	text-align: center;
+	background-color: #f3f3f3;
+	font-size: 14px;
+	margin-top: 20px;
+}
+.sgc_home_detail table td{
+	line-height: 30px;
+}
+.sgc_home_menu table{
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+	margin-top: 50px;
+	border-top: 10px solid #f3f3f3;
+	border-bottom: 10px solid #f3f3f3;
+}
+.sgc_home_menu table td{
+	height: 80px;
+}
+.sgc_home_menu table img{
+	width: 20px;
+	margin-bottom: 5px;
+}
+.sgc_home_footer{
+	padding: 10px 5%;
+	min-height: 140px;
+	border-bottom: 10px solid #F3F3F3;
+}
+.sgc_home_footer_img1{
+	width: 80px;
+	float: left;
+}
+.sgc_home_footer_img2{
+	width: 95%;
+	height: 17px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+/*底部导航栏*/
+.sgc_footer{
+	border-top: 1px solid #F3F3F3;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #FFFFFF;
+}
+.sgc_footer table{
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+}
+.sgc_footer table td{
+	width: 33.3%;
+}
+.sgc_footer table img{
+	width: 20px;
+	height: 20px;
+	margin-top: 7px;
+}
+/*充币*/
+.rp_rpay{
+	min-width: 100%;
+	min-height: 680px;
+	background-color: #FFFFFF;
+}
+.sps-pay-in-title{
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	background-color: #FFFFFF;
+}
+.sps-pay-in-btn div{	
+	line-height: 50px;
+	font-size: 18px;
+	width: 50%;
+	float: left;
+	border-bottom: 1px solid #F3F3F3;
+}
+.sps-pay-in-btn a{
+	color: #D3D3D3;
+}
+.active{
+	color: #000000;
+	border-bottom: 1px solid #ff5101 !important;
+}
+.sps-pay-in-property{
+	line-height: 50px;
+	width: 90%;
+	margin: 20px 5%;
+	text-align: center;
+	background-color: #F3F3F3;
+}
+.sps-pay-in-2dcode p{
+	text-align: center;
+	line-height: 25px;
+}
+.sps-pay-in-2dpicture img{
+	height: 100px;
+	margin-top: 10px;
+	float: left;
+}
+.sps-pay-in-2dright{
+	position: absolute;
+	border-left: 1px solid #FFFFFF;
+	margin-left: 11rem;
+	padding-left: 2rem;
+	margin-top: 20px;
+	height: 80px;
+	font-size: 16px;
+	min-width: 50%;
+}
+.sps-pay-in-2dright a{
+	color: #FFFFFF;
+	float: left;
+	width: 50%;
+}
+.sps-pay-in-2dright a:last-child{
+	margin-left: 10%;
+	width: 40%;
+}
+.sps-pay-in-2dright a:first-child span{
+	position: absolute;
+	margin-top: 30px;
+}
+.sps-pay-in-2dright a:last-child span{
+	position: absolute;
+	margin-top: 30px;
+	min-width: 32px;
+}
+.sps-pay-in-2dright img{
+	height: 40px;
+	margin-top: 20px;
+}
+.sps-pay-in-detail{
+	margin-top: 10px;
+	background-color: #FFFFFF;
+}
+.sps-pay-in-detail-title{
+	padding-left: 30px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.sps-pay-in-detail-title img{
+	height: 18px;
+}
+.sps-pay-in-detail-title span{
+	position: absolute;
+	margin-left: 1rem;
+	color: #00D1FF;
+	font-size: 16px;
+}
+.sps-pay-in-detail-cont table{
+	width: 90%;
+	margin-left: 5%;
+	text-align: center;
+}
+.sps-pay-in-detail-cont table thead td{
+	width: 25%;
+	height: 30px;
+	font-size: 14px;
+}
+.sps-pay-in-detail-cont table tbody td{
+	width: 25%;
+	height: 50px;
+	font-size: 12px;	
+}
+.sps-pay-in-detail-cont thead{
+	background-color: #E3ECF1;
+}
+/*提币*/
+.rp_rpay_out{
+	padding-left: 1rem;
+	font-size: 18px;
+}
+.rp_rpay_out p{
+	width: 95%;
+}
+.rp_rpay_out_yuE{
+	line-height: 50px;
+}
+.rp_rpay_out_yuE span:last-child{
+	float: right;
+}
+.rp_rpay_out_addr{
+	width: 95%;
+	text-align: center;
+	height: 37px;
+	background-color: #FFFFFF;
+	border: 1px solid #F3F3F3;
+}
+.rp_rpay_out_name{
+	text-align: right;
+	padding-top: 10px;
+}
+.rp_rpay_out_name span:first-child{
+	background-color: #7ab4ff;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	text-align: center;
+}
+.rp_rpay_out_num{
+	margin-top: 10px;
+	line-height: 50px;
+}
+.rp_rpay_out_num input{
+	height: 35px;
+	width: 67%;	
+	border: 1px solid #F3F3F3;
+}
+.rp_rpay_out_num b{
+	width: 32%;
+    display: inline-block;
+}
+.rp_rpay_out_num span{
+	position: absolute;
+    margin-left: -30px;
+    font-size: 16px;
+}
+.rp_rpay_out_pwd{
+	line-height: 50px;
+}
+.rp_rpay_out_pwd input{
+	height: 35px;
+	width: 67%;	
+	border: 1px solid #F3F3F3;
+}
+.rp_rpay_out_pwd b{
+	width: 32%;
+    display: inline-block;
+}
+.rp_rpay_out_pwd span{
+	position: absolute;
+    margin-left: -30px;
+    font-size: 16px;
+}
+.sgc_confirm_box{
+	text-align: center;
+	padding-top: 80px;
+}
+.sgc_confirm{
+	border: none;
+	outline: none;
+	width: 90%;
+	height: 50px;
+	color: #FFFFFF;
+	font-size: 18px;
+	background-color: #D9633F;
+	
+}
+.sgc_confirm1{
+	border: none;
+	outline: none;
+	width: 90%;
+	height: 50px;
+	color: #fff;
+	font-size: 18px;
+	background-color: #D9B140;
+}
+.sgc_cbtb_verifyCode{
+    height: 35px;
+    display: inline-block;
+    float: right;
+    color: #7AB4FF;
+    margin-top: -38px;
+    font-size: 16px;
+}
+/*提币记录*/
+.rp_scRpay_dataT{
+	width: 100%;
+}
+.rp_scRpay_dataT table{
+	width: 100%;
+}
+.rp_scRpay_dataT th{
+	width: 33.3%;
+	background-color: #3acc0c;
+	height: 50px;
+	color: #FFFFFF;
+}
+.rp_scRpay_dataT td{
+	width: 33.3%;
+	height: 50px;
+	text-align: center;
+	border-bottom: 1px solid #E3E3E3;
+	font-size: 14px;
+}
+.sgc_cbtb_smts{
+	width: 100%;
+	min-height: 680px;
+	background-color: rgba(0,0,0,.3);
+	position: fixed;
+	top: 62px;
+	text-align: center;
+}
+.sgc_cbtb_smts img{
+	width: 16px;
+	height: 16px;
+}
+.sgc_cbtb_smts a{
+	display: inline-block;
+	width: 120px;
+	line-height: 25px;
+	border-radius: 25px;
+	background-color: #F3F3F3;
+	color: #7AB4FF;
+}
+.sgc_cbtb_smts_box{
+	margin: auto;
+	margin-top: 200px;
+	width: 300px;
+	height: 200px;
+	background-color: #FFFFFF;
+}
+/*钱包账户*/
+.nav_bg_color{
+	background-color: #D9B140;
+	color: #FFFFFF;
+}
+.rp_scRpay_release{
+	float: right;
+	/*width: 90px;*/
+	padding: 0 10px;
+	line-height: 40px;
+	border-radius: 25px;
+	background-color: #7291E3;
+	text-align: center;
+	margin-right: 10px;
+}
+.rp_scRpay_word{
+	border-top: 1px solid #D3D3D3;
+	font-size: 14px;
+}
+.rp_scRpay_word table td:first-child{
+	border-right: 1px solid #D3D3D3;
+	width: 30%;
+	padding-left: 1rem;
+}
+.rp_scRpay_word table td:first-child p{
+	line-height: 38px;
+}
+.rp_scRpay_word table td:last-child{
+	padding-left: 5px;
+}
+/*定期账户*/
+.sgc_fixedAcc_states{
+	width: 105px;
+    padding: 10px;
+    padding-top: 40px;
+    float: right;
+    font-size: 12px;
+}
+/*算力账户*/
+.sgc_slAcc_hz{
+	width: 100%;
+	min-height: 680px;
+	background-color: rgba(0,0,0,.3);
+	position: fixed;
+	top: 62px;
+}
+.sgc_slAcc_hz_box{
+	width: 300px;
+	height: 330px;
+	background-color: #FFFFFF;
+	margin: auto;
+	margin-top: 100px;
+}
+.sgc_slAcc_hz_input{
+	padding: 0 20px;
+}
+.sgc_slAcc_hz_input p{
+	line-height: 40px;
+}
+.sgc_slAcc_hz_input p input{
+	height: 40px;
+	width: 80%;
+	border: none;
+	border-right: 1px solid #000000;
+}
+.sgc_slAcc_hz_btn{
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	border: none;
+	border-top: 1px solid #D3D3D3;
+	margin-top: 50px;
+}
+.sgc_slAcc_hz_btn div{
+	width: 49%;
+	float: left;
+	line-height: 50px;
+	
+}
+/*个人中心*/
+.sgc_my_title{
+	height: 190px;
+	background: url(../../web/images/sgc/my_bg.png);
+	background-size: 100% 190px;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+}
+.sgc_my_title a{
+	color: #FFFFFF;
+	float: right;
+	padding-top: 10px;
+	padding-right: 20px;
+	font-size: 20px;
+}
+.sgc_my_head{
+	
+}
+.sgc_my_head_logo{
+	margin: auto;
+	margin-top: -170px;
+	padding: 5%;
+	width: 75%;
+	height: 160px;
+	background-color: #FFFFFF;
+	text-align: center;
+	border-radius: 150px 150px 0 0;
+}
+.sgc_my_head_logo img{
+	width: 70px;
+	height: 70px;
+	margin-bottom: 20px;
+}
+.sgc_my_head_logo p{
+	line-height: 30px;
+}
+.sgc_my_menu{	
+	margin-top: 15px;
+}
+.sgc_my_menu table{
+	background-color: #FFFFFF;
+	width: 85%;
+	height: 150px;
+	margin: auto;
+}
+.sgc_my_menu table td{
+	height: 100px;
+	text-align: center;
+	font-size: 12px;
+	width: 25%;
+	vertical-align: top;
+    padding-top: 10px;
+}
+.sgc_my_menu img{
+	width: 50px;
+	height: 50px;
+}
+/*个人信息*/
+.sgc_myInfo_exHead{
+	background-color: #FFFFFF;
+	padding: 10px;
+	height: 50px;
+}
+.sgc_myInfo_exHead_img1{
+	width: 50px;
+	height: 50px;
+	float: left;
+	border-radius: 50%;
+}
+.sgc_myInfo_exHead_span{
+	float: right;
+    line-height: 50px;
+}
+.sgc_myInfo_exHead_img2{
+	width: 10px;
+    height: 10px;
+    margin-left: 10px;
+}
+.sgc_myInfo_p{
+	margin-top: 10px;
+	background-color: #FFFFFF;
+	line-height: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.sgc_myInfo_exNickName_input{
+	width: 90%;
+	height: 50px;
+	font-size: 18px;
+	margin: 100px 5%;
+	border: none;
+	border-bottom: 1px solid #D3D3D3;
+	background-color: #F3F3F3;
+	outline: none;
+	border-radius: 5px;
+}
+.sgc_myInfo_smrz_idcardTop{
+	background: url(../../web/images/sgc/upload.png);
+	background-size: 80px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	text-align: center;
+	height: 200px;
+	border-bottom: 1px solid #F3F3F3;
+}
+.sgc_myInfo_smrz_idcardBottom{
+	background: url(../../web/images/sgc/upload.png);
+	background-size: 80px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	text-align: center;
+	height: 200px;
+	border-bottom: 1px solid #F3F3F3;
+}
+.sgc_myInfo_smrz_upload{
+	padding-top: 5px;
+}
+.exUpload{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+}
+.exUpload img{
+	margin-top: 10px;
+	width: 320px;
+	height: 180px;
+	position: relative;
+}
+.upload{
+	width: 80px;
+	height: 80px;
+	position: absolute;
+}
+/*推广中心*/
+.sgc_tg{
+	width: 100%;
+}
+.sps-share-picture{
+	width: 320px;
+	height: 520px;
+	margin: 100px auto;
+	background-color: #FFFFFF;
+	border-radius: 220px/20px;
+	text-align: center;
+}
+.sps-share-picture-one{
+	background-color: #F17801;
+	height: 50px;
+	color: #FFFFFF;
+	line-height: 50px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+.sps-share-picture-two{
+	padding-top: 25px;
+	font-size: 14px;
+}
+.sps-share-picture-three{
+	font-size: 26px;
+	padding-top: 10px;
+}
+.sps-share-picture-four{
+	padding-top: 20px;
+}
+.sps-share-picture-four img{
+	width: 260px;
+}
+.sps-share-picture-five{
+	padding-top: 25px;
+}
+.sps-share-picture-five input{
+	line-height: 30px;
+	width: 260px;
+	background-color: #F3F3F3;
+	border: none;
+	text-align: center;
+}
+.sps-share-picture-five p{
+	line-height: 60px;
+}
+/*安全设置*/
+.sgc_setting_toggle{
+	width: 100%;
+	line-height: 50px;
+	height: 50px;
+}
+.sgc_setting_toggle span{
+	float: left;
+	text-align: center;
+	width: 50%;
+	border-bottom: 1px solid #F3F3F3;
+}
+.sgc_setting_active{
+	color: #D9B140;
+	border-bottom: 1px solid #D9B140 !important;
+}
+.sgc_setting_exloginpwd{
+	margin-top: 50px;
+	padding: 10px 5%;
+}
+.sgc_setting_exloginpwd p{
+	margin-bottom: 30px;
+	line-height: 40px;
+}
+.sgc_setting_exloginpwd p input{
+	height: 40px;
+	width: 75%;
+	float: right;
+}
+.sgc_setting_extradepwd{
+	margin-top: 50px;
+	padding: 10px 5%;
+}
+.sgc_setting_extradepwd p{
+	margin-bottom: 30px;
+	line-height: 40px;
+}
+.sgc_setting_extradepwd p input{
+	height: 40px;
+	width: 75%;
+	float: right;
+}
+/*财富中心*/
+.sgc_properties_table table{
+	width: 100%;
+	text-align: center;
+}
+/*分享中心*/
+.sgc_share_search{
+	float: right;
+}
+.sgc_share_search input{
+	height: 30px;
+	border: none;
+	outline: none;
+	border-radius: 25px;
+	padding-left: 10px;
+}
+.sgc_share_userInfo table{
+	width: 100%;
+}
+.sgc_share_userInfo table:first-child td{
+	width: 25%;
+}
+.sgc_share_userInfo table:last-child{
+	border-bottom: 10px solid #F3F3F3;
+}
+.sgc_share_userInfo table:last-child td{
+	width: 33.3%;
+}
+.sgc_share_userInfo table td{
+	text-align: center;
+	line-height: 50px;
+	border: 1px solid #F3F3F3;
+}
+.sgc_share_toggle{
+	text-align: center;
+	line-height: 50px;
+	background-color: #DF8164;
+	color: #FFFFFF;
+}
+.sgc_share_fellow table{
+	width: 100%;
+	text-align: center;
+}
+.sgc_share_fellow table th{
+	line-height: 50px;
+	border: 1px solid #F3F3F3;
+}
+.sgc_share_fellow table td{
+	line-height: 50px;
+	border-bottom: 1px solid #F3F3F3;
+	width: 25%;
+}
+.sgc_share_fellow table td span{
+	padding: 5px 10px;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #D9B140;
+	color: #D9B140;
+	box-shadow: 0px 0px 10px #D9B140 inset;
+}

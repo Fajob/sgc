@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta id="i18n_pagename" content="common">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title>添加地址</title>
+	    <script src="/public/js/jquery-2.1.4.min.js"></script>
+	    <script src="/public/js/mui.min.js"></script>
+		<script src="/public/js/mui.picker.min.js"></script>
+		<script src="public/js/layer/layer.js"></script>
+		<script src="/public/js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="/public/js/wwt_style.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js" ></script>
+	    <link href="/public/css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" href="/public/css/wwt_style.css" />
+	    <link rel="stylesheet" type="text/css" href="/public/css/mui.picker.min.css"/>
+	</head>
+	<style type="text/css">
+		.mui-table-view-cell:after {
+		    left: 0px;
+		}
+		li{
+			font-size: 14px;
+			line-height: 40px;
+			position: relative;
+		}
+		ul:before {
+		    height: 0px !important;
+		}
+		ul:after {
+		    height: 0px !important;
+		}
+		li input{
+			text-align: left !important;
+			color: #666 !important;
+		}
+		.mui-icon-checkmarkempty:before {
+		    content: '\e472';
+		    position: relative;
+		    right: 5px;
+		}
+		.nav_bg{
+			position: fixed;
+			width: 100%;
+			top: 0;
+			z-index: 99;
+			background-color: #D9B140;
+			border-bottom: 1px solid #D3D3D3;
+			padding: 20px 5%;
+			color: #FFFFFF;
+			margin-bottom: 62px;
+			font-size: 16px;
+		}
+		.nav1 img{
+			width: 8px;
+			margin-right: 5px;
+		}
+		.add_address_btn{
+			background-color: #D9B140;
+		}
+		.choose_address .label{
+			color: #D9B140;
+		}
+		.wwt_select_address{
+			background-color: #D9B140;
+    		border: 1px solid #D9B140!important;
+		}
+	</style>
+	<body style="background: #efefef;">
+		<div class="nav_bg">
+				<div class="nav1">
+					<a href="javascript:history.back(-1)" style="color: #FFFFFF;"><img src="public/web/images/sgc/back_arrow.png" />
+						<label class="i18n" name="i18nAddAddress1"></label>
+					</a>
+				</div>
+			</div>
+		<!--<div class="nav">
+			<a href="javascript:history.back(-1)" class="back"></a>
+			添加地址
+			<a href="javascript:;" class="right"></a>
+		</div>-->
+		<div style="position: absolute;top: 62px;width: 100%;">
+		<form id="address_form" method="post">
+			<ul class="mui-table-view" style="margin-top: 5px;">
+				<li class="mui-table-view-cell">
+					<label class="i18n" name="i18nRealName"></label>
+					<input type="hidden" name="id" value="{%$user_info.id%}"/>
+					<input type="text" name="user_name" class="wwt_mui_input i18n-input" selectname="i18nRealName1" selectattr="placeholder" />
+				</li>
+				<li class="mui-table-view-cell">
+					<label class="i18n" name="i18nAddrPhone"></label>
+					<input type="text" name="user_phone"  class="wwt_mui_input i18n-input" selectname="i18nAddrPhone1" selectattr="placeholder" />
+				</li>
+				<li class="mui-table-view-cell area_zh">
+					<label class="i18n" name="i18nArea"></label>
+					<input name="address" type="text" id="add_address" value=""  class="wwt_mui_input i18n-input" selectname="i18nChooseAddr" selectattr="placeholder" />
+					<button type="button" id="choose_city" class="wwt_city_btn"></button>
+				</li>
+				<li class="mui-table-view-cell area_en">
+					<label class="i18n" name="i18nArea"></label>
+					<input type="text" name="address" class="wwt_mui_input i18n-input" selectname="i18nChooseAddr" selectattr="placeholder" />
+				</li>
+				<li class="mui-table-view-cell">
+					<label class="i18n" name="i18nDetailAddress"></label>
+					<input name="address1" style="border: none;font-size: 13px;margin-bottom: 0;padding: 10px 5px;" type="text" class="i18n-input" selectname="i18nChooseAddr1" selectattr="placeholder" />
+				</li>
+			</ul>
+			<div class="choose_address">
+				<label class="label">
+					<input id="is_default" type="hidden" name="is_default" value="1"/>
+					<span class="mui-icon mui-icon-checkmarkempty wwt_select_address"></span>
+					<label style="float: none;padding: 0;" class="i18n" name="i18nDefaultAddr1"></label>
+				</label>
+			</div>
+			<button type="button" class="add_address_btn i18n" name="i18nSave"></button>
+		</form>
+		</div>
+	</body>
+	<script>
+		var thisURL = document.URL;
+		var getval = thisURL.split('&');
+		getval = getval[getval.length - 1];
+		showval = getval.split('=');
+		
+		var userLanguage = getCookie("userLanguage");
+		if(!userLanguage){
+			userLanguage = 'zh-CN';
+		}
+		if (userLanguage == 'en'){
+//			$('.area_zh').addClass('none');
+			$('.area_zh').remove();
+		}else{
+//			$('.area_en').addClass('none');
+			$('.area_en').remove();
+		}
+		//城市三级联动
+		(function($, doc) {
+				$.init();
+				$.ready(function(){
+					var get_city = function(obj, param) {
+						return obj[param] || '';
+					};
+					var city = new $.PopPicker({
+						layer: 3
+					});
+					city.setData(cityData3);
+					var btn = doc.getElementById('choose_city');
+					var _input = doc.getElementById('add_address');
+					btn.addEventListener('tap', function(event) {
+						city.show(function(items) {
+							_input.value = get_city(items[0], 'text') + " " + get_city(items[1], 'text') + " " + get_city(items[2], 'text');
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+				});
+		})(mui, document);
+		
+		//是否为默认地址
+		var is_default;
+		$(document).on("click","label",function(){
+			$(this).toggleClass("label");
+			$(this).children("span").toggleClass("mui-icon-checkmarkempty wwt_select_address");
+			if($(this).attr("class") == "label"){
+				var is_default = 1
+			}else{
+				var is_default = 0
+			}
+			$("#is_default").val(is_default);
+		})
+		$(document).on("click",".add_address_btn",function(){
+			var address_form = $("#address_form").serialize();
+			$.post("api/index.php?ctl=user&act=do_add_address",address_form,function(data){
+				if(data){
+					var _data = eval("("+data+")");
+					if(_data.status == true){
+						alert(_data.msg);
+						if(showval[0] == 'num'){
+							window.location.href="index.php?ctl=setting&act=address_gl&num=add"
+						}else{
+							window.location.href="index.php?ctl=setting&act=address_gl";
+						}
+					}else{
+						layer.msg(_data.msg, function(){
+						});
+					}
+				}
+			})
+		})
+	</script>
+</html>

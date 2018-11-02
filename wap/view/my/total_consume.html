@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta id="i18n_pagename" content="common">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!--<link rel="stylesheet" href="public/css/mui.min.css">-->
+		<link rel="stylesheet" href="public/css/sgc/sgc_style.css" />
+		<script src="/public/js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js" ></script>
+		<!--<link rel="stylesheet" type="text/css" href="public/css/media-100.css"/>
+		<link rel="stylesheet" type="text/css" href="public/css/login-style.css"/>	
+		<link rel="stylesheet" type="text/css" href="public/css/wwt_style.css"/>-->
+		<style>
+			*{
+				font-size: 12px;
+			}
+			.nav_bg{
+				width: 90%;
+				padding: 15px 5%;
+				line-height: 30px;
+			}
+			.sgc_share_fellow table th{
+				width: 25%;
+			}
+			.sgc_share_search input{
+				width: 70%;
+			}
+			.sgc_share_search a{
+				font-size: 16px;
+				color: #fff;
+			}
+			input::-webkit-input-placeholder { /* WebKit browsers */ 
+				font-size: 12px;
+			} 
+			input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+				font-size: 12px; 
+			} 
+			input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+				font-size: 12px; 
+			} 
+			input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+				font-size: 12px; 
+			}
+			.head_img{
+				width: 70px;
+				height: 70px;
+				margin: auto;
+				padding-top: 15px;
+			}
+			.head_img img{
+				width: 100%;
+				height: 100%;
+				border-radius: 50%;
+				border: 2px solid #efefef;
+			}
+			.yj_con p{
+				float: left;
+				width: 33.33333%;
+			}
+			.yj_con p span{
+				float: left;
+				width: 100%;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+			}
+			.yj_con p em{
+				float: left;
+				width: 100%;
+				height: 20px;
+				line-height: 30px;
+				text-align: center;
+				color: red;
+				font-style: normal;
+			}
+			.sgc_share_userInfo{
+				float: left;
+				width: 100%;
+				background: -moz-linear-gradient(top, #D9B140 0%, #fff 100%);
+			    background: -webkit-linear-gradient(top, #D9B140 0%, #fff 100%);
+			    background: -o-linear-gradient(top, #D9B140 0%, #fff 100%);
+			    background: -ms-linear-gradient(top, #D9B140 0%, #fff 100%);
+			    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#D9B140', endColorstr='#fff', GradientType=0);
+			}
+			.sgc_share_fellow table td span{
+				border: 1px solid #3acc0c;
+			    color: #fff;
+			    background-color: #3acc0c;
+			    box-shadow: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="sgc_share">
+			<div class="nav_bg">
+				<div class="nav">
+					<a href="index.php?ctl=user&act=myinfo" style="color: #FFFFFF;"><img src="public/web/images/sgc/back_arrow.png" />
+						<label style="font-size: 16px;" class="i18n" name="i18nShare1"></label>
+					</a>
+					<span class="sgc_share_search">
+						<!--<input class="i18n-input" selectname="i18nShareSearch" selectattr="placeholder" type="text" />-->
+						<a href="index.php?ctl=user&act=help_register" style="float: right;" class="i18n" name="i18nHelpReg"></a>
+					</span>
+				</div>
+			</div>
+			<div class="sgc_share_userInfo">
+				<div class="head_img">
+					<img src="{%$userInfo.user_avatar%}" alt="" />
+				</div>
+				<p style="font-size: 14px;text-align: center;margin: 5px 0;">{%$userInfo.user_name%}</p>
+				<div class="yj_con">
+					<p>
+						<em>{%$userInfo.yeJiSum%}</em>
+						<span class="i18n" name="i18nShareCumulativeP"></span>
+					</p>
+					<p>
+						<em>{%$userInfo.todayYeJiSum%}</em>
+						<span class="i18n" name="i18nShareTodayP"></span>
+					</p>
+					<p>
+						<em>{%$userInfo.userNodeSum%}</em>
+						<span class="i18n" name="i18nShareFellow"></span>
+					</p>
+				</div>
+				<!--<table>
+					<tr>
+						<td class="i18n" name="i18nShareUsername"></td>
+						<td>{%$userInfo.user_name%}</td>
+						<td class="i18n" name="i18nShareName"></td>
+						<td>{%$userInfo.real_name%}</td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td style="line-height: normal;" class="i18n" name="i18nShareCumulativeP"></td>
+						<td style="line-height: normal;" class="i18n" name="i18nShareTodayP"></td>
+						<td class="i18n" name="i18nShareFellow"></td>
+					</tr>
+					<tr>
+						<td style="color: red;">{%$userInfo.yeJiSum%}</td>
+						<td style="color: orangered;">{%$userInfo.todayYeJiSum%}</td>
+						<td>{%$userInfo.userNodeSum%}</td>
+					</tr>
+				</table>-->
+			</div>
+			<div style="clear: both;"></div>
+			<div class="sgc_share_userFellow">
+				<p style="background-color: #3acc0c;" id="i18nToggleR" class="sgc_share_toggle i18n" name="i18nToggleR"></p>
+				<!--<p id="i18nToggleL" class="sgc_share_toggle hide i18n" name="i18nToggleL"></p>-->
+				<div class="sgc_share_fellow">
+					<table>
+						<tr>
+							<th class="i18n" name="i18nShareUsername"></th>
+							<th class="i18n" name="i18nSharePhoneNumber"></th>
+							<th class="i18n" name="i18nShareNum"></th>
+							<th class="i18n" name="i18nShareOperating"></th>
+						</tr>
+						{%foreach from=$children item=item1%}
+						<tr>
+							<td>{%$item1.user_name%}</td>
+							<td>{%$item1.phone_number%}</td>
+							<td class="this_id">{%$item1.id%}</td>
+							<td>
+								{%if $item1.left_id eq "" or $item1.left_id eq null or $item1.left_id eq undefined%}
+								<span class="i18n" name="i18nShareLeft" onclick="hq({%$item1.id%},'left',0)" id="left"></span>
+								{%else%}
+								<span class="i18n" name="i18nShareLeft" onclick="hq({%$item1.id%},'left',{%$item1.left_id%})" id="left"></span>
+								{%/if%}
+								{%if $item1.left_id eq "" or $item1.left_id eq null or $item1.left_id eq undefined%}
+								<span class="i18n" name="i18nShareRight" onclick="hq({%$item1.id%},'right',0)" id="right"></span>
+								{%else%}
+								<span class="i18n" name="i18nShareRight" onclick="hq({%$item1.id%},'right',{%$item1.right_id%})" id="right"></span>
+								{%/if%}
+							
+							</td>
+						</tr>
+						{%/foreach%}
+					</table>
+				</div>
+			</div>
+		</div>
+		<script>
+			
+			function hq(id,type,id1){
+//				alert(123)
+				if(id1 == 0){
+					alert("无数据");
+					return false;
+				}else{
+					window.location.href="index.php?ctl=user&act=total_consume&uid="+id+"&type="+type;
+				}
+				
+			}
+
+			$('#i18nToggleR').click(function(){
+				if('{%$userInfo.right_id%}' == undefined || '{%$userInfo.right_id%}' == ''){
+					alert("无数据");
+					return false;
+				}else{
+					window.location.href='index.php?ctl=user&act=total_consume_r&uid={%$userInfo.id%}&type=right';
+				}
+			})
+			
+			
+//			var userLanguage = getCookie("userLanguage");
+//			if(!userLanguage){
+//				userLanguage = 'zh-CN';
+//			}
+//			if (userLanguage == 'en'){
+//				$('.sgc_share_search').css('width','74%')
+//			}else{
+//				$('.sgc_share_search').css('width','60%')
+//			}
+//			$('.sgc_share_toggle').click(function(){
+//				if($(this).text() == '切换右分区' || $(this).text() == 'Switch right partition'){
+//					$(this).addClass('hide');
+//					$('#i18nToggleL').removeClass('hide')
+//				}else{
+//					$(this).addClass('hide');
+//					$('#i18nToggleR').removeClass('hide')
+//				}
+//			})
+		</script>
+		<!--<div class="nav">
+			<a href="javascript:history.back(-1)" class="back"></a>
+			团队总业绩
+			<a href="javascript:;" class="right">
+			</a>
+		</div>
+		<div class="sps-team-performence">
+		<div class="sps-team-performence-bg">
+			<div class="sps-team-performence-title">
+				<div class="sps-my-head">
+					<div class="myHead">
+						<img src="{%$data.user_info.user_avatar%}" />
+					</div>
+				</div>
+				<div class="sps-team-performence-headinfo">
+					<table>
+						<tr>
+							<td style="width: 60%;">昵称：<span>{%$data.user_info.user_name%}</span></td>
+							<td>等级：<span id="myLv"></span></td>
+						</tr>
+						<tr>
+							<td colspan="2">我的总业绩：<span>{%$data.user_info.total_consume%}</span></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="sps-team-performence-myhigher">
+				<table>
+					<tr>
+						<td>我的上级</td>
+						<td>手机号：<span>{%$data.p_user_info.phone_number%}</span></td>
+						<td>等级：<span id="myPlv"></span></td>
+					</tr>
+				</table>
+			</div>
+			<div class="sps-team-performence-underumbrella">伞下团队业绩</div>
+			<div class="sps-my-spschain-footer"></div>	
+			{%foreach from=$data.direct_users_detail item=item1%}
+			<div class="sps-team-performence-personal">
+				<table style="border-bottom: 1px solid #F3F3F3;height: 90px;">
+					<tr>
+						<td>
+							<div class="sps-my-head">
+								<div class="myFellowHead">
+									<img src="{%$item1.user_info.user_avatar%}" />
+								</div>
+							</div>
+							<div class="sps-team-performence-headinfo">
+								<table>									
+									<tr>
+										<td colspan="2">{%$item1.user_info.user_name%}</td>
+									</tr>
+									<tr>
+										<td style="width: 60%;">{%$item1.user_info.phone_number%}</td>
+										<td>等级：<span class="myFellowLv">{%$item1.user_info.user_level%}</span></td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<table style="border-bottom: 5px solid #F3F3F3;height: 90px;">
+					<tr>
+						<td>
+							<div class="sps-save-wallet-status">
+							<table>
+								<tr>
+									<td>
+										<p style="margin-bottom: 20px;">团队总业绩</p>
+										<span style="color: #F17801;font-size: 24px;">{%$item1.rainbow_consume%}</span>
+									</td>
+									<td>
+										<p style="margin-bottom: 20px;">每日团队新增业绩</p>
+										<span style="color: #F17801;font-size: 24px;">{%$item1.rainbow_consume_daily%}</span>
+									</td>
+								</tr>
+							</table>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			{%/foreach%}
+		</div>
+		</div>
+		<script src="public/js/sps.js"></script>
+		<script>
+			var lv = '{%$data.user_info.user_level%}';
+			$('#myLv').text(myLv(lv));
+			var plv = '{%$data.p_user_info.user_level%}';
+			$('#myPlv').text(myLv(plv));
+			var myFellow = document.getElementsByClassName('myFellowLv');
+			for(var i=0;i<myFellow.length;i++){
+				var tt = myFellow[i].innerText;
+				var txt = myLv(tt);
+				myFellow[i].innerText = txt;
+			}
+		</script>-->
+	</body>
+</html>

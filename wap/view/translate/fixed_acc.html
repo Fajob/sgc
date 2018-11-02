@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta id="i18n_pagename" content="common">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="public/css/sgc/sgc_style.css" />
+		<script type="text/javascript" src="public/js/jquery-2.1.4.min.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/sgc.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js" ></script>
+		<title></title>
+		<style>
+			.rp_scRpay_dataT th{
+				width: 20%;
+			}
+			.rp_scRpay_dataT td{
+				width: 25%;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="rp_scRpay">
+			<div class="nav_bg_color" style="min-height: 176px;">
+				<div class="nav_bg">
+				<div class="nav">
+					<a href="javascript:history.back(-1)" style="color: #FFFFFF;"><img src="public/web/images/sgc/back_arrow.png" />
+						<label class="i18n" name="i18nFixed"></label>
+					</a>
+				</div>
+				</div>
+				<div style="padding-left: 1rem;margin-bottom: 20px;float: left;">
+				<p style="font-size: 14px;line-height: 100px;" class="i18n" name="i18nFixedNum"></p>
+				<p style="width: 100px;">
+					<span style="font-size: 30px;display:inline-block;margin-top: 6px;padding-bottom: 10px;">{%$zcCoinSum%}</span>
+				</p>
+				</div>
+				<p class="sgc_fixedAcc_states i18n" name="i18nFixedInstruction">
+				</p>
+				<div style="clear: both;"></div>
+			</div>
+			<div class="rp_scRpay_dataT">
+				<table style="border-collapse: collapse;">
+					<tr>
+						<th class="i18n" name="i18nStartTime"></th>
+						<!--<th>结束时间</th>-->
+						<th class="i18n" name="i18nCycle"></th>
+						<th class="i18n" name="i18nNum"></th>
+						<th class="i18n" name="i18nFixedRate"></th>
+					</tr>
+					{%foreach from=$zcLog item=item%}
+					<tr>
+						<td class="time">{%$item.coin_begin_time%}</td>
+						<!--<td class="time">{%$item.coin_over_time%}</td>-->
+						<td style="color: #D9B140;">{%$item.coin_day%}</td>
+						<td style="color: green;">{%$item.coin_num%}</td>
+						<td style="color: red;">{%$item.coin_lilv%}%</td>
+					</tr>
+					{%/foreach%}
+				</table>
+				
+			</div>
+		</div>
+	</body>
+	<script>
+		jQuery(function($){
+			var time = document.getElementsByClassName('time');
+			for(var i=0;i<time.length;i++){
+				time[i].innerText = date(time[i].innerText);
+			}
+	   	})
+		var userLanguage = getCookie("userLanguage");
+		if(!userLanguage){
+			userLanguage = 'zh-CN';
+		}
+		if (userLanguage == 'en'){
+			$('.sgc_fixedAcc_states').css('width','165px')
+		}
+	</script>
+</html>

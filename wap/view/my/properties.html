@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta id="i18n_pagename" content="common">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="public/css/sgc/sgc_style.css" />
+		<script type="text/javascript" src="public/js/jquery-2.1.4.min.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/sgc.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js" ></script>
+		<script src="/public/js/style.js"></script>
+		<title></title>
+		<style>
+			.rp_scRpay_dataT th{
+				width: 25%;
+			}
+			.rp_scRpay_dataT td{
+				width: 25%;
+				font-size: 12px;
+			}
+			.sgc_properties_table table td{
+				width: 33.3%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="rp_scRpay">
+			<div class="nav_bg_color">
+				<div class="nav_bg">
+				<div class="nav">
+					<a href="javascript:history.back(-1)" style="color: #FFFFFF;"><img src="public/web/images/sgc/back_arrow.png" />
+						<label class="i18n" name="i18nProperties"></label>
+					</a>
+				</div>
+				</div>
+				<div style="padding-left: 1rem;margin-bottom: 20px;">
+				<p style="font-size: 14px;line-height: 100px;" class="i18n" name="i18nAllProperties"></p>
+				<p>
+					<span style="font-size: 30px;display:inline-block;margin-top: 6px;padding-bottom: 10px;">{%$userData.coinSum%}</span>
+					
+				</p>
+				</div>
+				<div class="sgc_properties_table">
+					<table>
+						<tr>
+							<td class="i18n" name="i18nDepositPro" style="font-size: 12px;border-right: 1px solid #FFFFFF;"></td>
+							<td class="i18n" name="i18nSlPro" style="font-size: 12px;border-right: 1px solid #FFFFFF;"></td>
+							<td class="i18n" name="i18nFixedPro" style="font-size: 12px;"></td>
+						</tr>
+					</table>
+					<table style="margin-top: 10px;">
+						<tr>
+							<td style="height: 40px;color: #fff;">{%$userData.coin%}</td>
+							<td style="color: #fff;">{%$userData.consume_credits%}</td>
+							<td style="color: #fff;">{%$userData.zc_coin_num%}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="rp_scRpay_dataT">
+				<table style="border-collapse: collapse;">
+					<tr>
+						<th class="i18n" name="i18nTime"></th>
+						<th class="i18n" name="i18nAcc"></th>
+						<th class="i18n" name="i18nType"></th>
+						<th class="i18n" name="i18nNum"></th>
+					</tr>
+					{%foreach from=$data item=item%}
+					<tr>
+						<td class="time">{%$item.createtime%}</td>
+						<td>{%$item.account_type%}</td>
+						<td>{%$item.comment_type%}</td>
+						<td class="rp_scRpay_dataT_leftmoney">{%$item.money%}</td>
+					</tr>
+					{%/foreach%}
+					<!--<tr>
+						<td>2017/11/13 15:36:13</td>
+						<td>钱包</td>
+						<td>平台转入</td>
+						<td class="rp_scRpay_dataT_leftmoney">+1000</td>
+					</tr>
+					<tr>
+						<td>2017/11/13 15:36:13</td>
+						<td>算力</td>
+						<td>购物消费</td>
+						<td class="rp_scRpay_dataT_leftmoney">-1000</td>
+					</tr>-->
+				</table>
+				
+			</div>
+		</div>
+	</body>
+	<script>
+		jQuery(function($){
+			var time = document.getElementsByClassName('time');
+			for(var i=0;i<time.length;i++){
+				time[i].innerText = date(time[i].innerText);
+			}
+	    })
+	</script>
+</html>

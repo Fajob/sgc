@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta id="i18n_pagename" content="common">
+		<meta content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1" name="viewport">
+		<script src="public/js/jquery-2.1.4.min.js"></script>
+		<script src="public/js/layer/layer.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js" ></script>
+		<link rel="stylesheet" href="public/css/sgc/sgc_style.css" />
+		<!--<link rel="stylesheet" type="text/css" href="public/css/media-100.css"/>
+		<link rel="stylesheet" type="text/css" href="public/css/login-style.css"/>-->
+	</head>
+	<style type="text/css">
+		/*input{
+			color: #fff;
+		}*/
+		.sgc_login_verifyCode{
+			background-color: #fff;
+		}
+		.sgc_login_verifyCode img{
+			width: 80px !important;
+			height: 30px !important;
+		}
+		body{
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	</style>
+	<body style="height: 100%;">
+		<div class="sgc_login">
+			<p class="sgc_login_reg">
+				<!--<a class="i18n" name="i18nRegister" href="index.php?ctl=user&act=register"></a><img src="public/web/images/sgc/right_arrow.png" />-->
+				<span style="float: right;"><label id="language" class="i18n" name="i18nLang"></label><img src="public/web/images/sgc/ex_lang.png" /> </span>
+			</p>
+			<p class="sgc_login_logo">
+				<img src="public/web/images/sgc	/logo.png" />
+			</p>
+			<form class="sgc_login_form">
+				<p>
+					<img src="public/web/images/sgc/phone_num.png" />
+					<input id="phone_number" type="text" class="i18n-input" selectname="i18nPhoneNum" selectattr="placeholder"/>
+				</p>
+				<p>
+					<img src="public/web/images/sgc/login_pwd.png" />
+					<input id="user_pwd" type="password" class="login-input-user i18n-input" selectname="i18nLogPwd" selectattr="placeholder"/>
+				</p>
+				<p>
+					<img src="public/web/images/sgc/verify_code.png" />
+					<input id="verify" style="width: 50%;" type="text" class="login-input-user i18n-input" selectname="i18nYzm" selectattr="placeholder"/>
+					<span class="sgc_login_verifyCode"><img id="verify_img" src="verify.php" alt="" /></span>
+				</p>
+			</form>
+			<a href="index.php?ctl=user&act=forgetpwd">
+				<p class="i18n" name="i18nForgetPwd" style="margin-top: -10px;margin-right:30px;text-align: right;color: #D9B140;"></p>
+			</a>
+			<p class="sgc_login_btn">
+				<button id="login_btn" type="button" class="i18n" name="i18nLog"></button>
+			</p>
+			<p class="sgc_login_agreement">
+				<label class="i18n" name="i18nServiceAgree1"></label><a class="i18n" name="i18nServiceAgree2"></a>
+			</p>
+		</div>
+		<!--<script src="public/js/mui.min.js"></script>
+		<script type="text/javascript">
+			
+		</script>
+		<div class="log_login_bg">
+			<div class="log_nav">
+				
+			</div>
+			<div class="log_login_logo">
+				<img src="public/web/images/logo.png" alt="" />
+			</div>
+			<div class="log_login_logo_word">
+				<span>CHINA SPS BLOCK CHAIN</span>
+			</div>
+			<div class="log_login_ask">
+				<p>
+					<input type="text" class="log_input_icon log_user" disabled="true"/>
+					<span class="log_vertical_bar"></span>
+					<input type="text" id="phone_number" class="log_inupt_content" placeholder="输入手机号码"/>
+				</p>
+				<p>
+					<input type="text" class="log_input_icon log_password" disabled="true"/>
+					<span class="log_vertical_bar"></span>
+					<input type="password" id="user_pwd" class="log_inupt_content" placeholder="输入登录密码"/>
+				</p>
+				<p>
+					<input type="text" class="log_input_icon log_verificatincode"  disabled="true"/>
+					<span class="log_vertical_bar"></span>
+					<input type="text" id="verify" class="log_inupt_content" placeholder="输入验证码"/>
+					<span class="log_code_picture" id="verify_img_con"><img id="verify_img" src="verify.php" alt="" /></span>
+				</p>
+				<a><button type="button" id="login_btn" class="log_login_btn">登录</button></a>
+			</div>
+			<div class="go_reg">
+				<div class="go_reg_register">
+					<a href="index.php?ctl=user&act=register">新户注册</a>
+				</div>
+				<div class="go_reg_forget_password">
+					<a href="index.php?ctl=user&act=forgetpwd">忘记密码</a>
+				</div>
+			</div>
+		</div>-->
+	</body>
+	<script>
+		$(document).on("click","#login_btn",function(){
+			var mobile = $("#phone_number").val();
+			var pwd = $("#user_pwd").val();
+			var verify = $("#verify").val();
+			$.post("api/index.php?ctl=user&act=do_login",{"phone_number":mobile,"user_pwd":pwd,"verify":verify},function(data){
+				if(data)
+				{
+					var obj = eval('(' + data + ')');
+					if(obj.status == true){
+						window.location.href = "index.php?ctl=user&act=home&isfromlog=true";
+					}
+					else
+					{	
+						layer.msg(obj.msg, function(){
+							$(".sgc_login_verifyCode").html("<img id='verify_img' src='verify.php' />");
+						});
+					}
+				}
+				else
+				{
+					alert('服务器返回一个错误');
+				}
+			})
+		})
+		/*$(document).on('click','#verify_img',function(){
+			$(".sgc_login_verifyCode").html("<img id='verify_img' src='verify.php' />");
+		})*/
+		$('.sgc_login_verifyCode').click(function(){
+			$(".sgc_login_verifyCode").html("<img id='verify_img' src='verify.php' />");
+		})
+	</script>
+</html>

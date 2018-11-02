@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta id="i18n_pagename" content="common">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="public/css/sgc/sgc_style.css" />
+		<script type="text/javascript" src="public/js/jquery-2.1.4.min.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/sgc.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js"></script>
+		<title></title>
+		<style>
+			.rp_scRpay_release{
+				width: auto;
+				padding: 0 10px;
+			}
+			.hyhz{
+				float: right;
+				padding: 0 10px;
+				line-height: 40px;
+				border-radius: 25px;
+				background-color: #7291E3;
+			    text-align: center;
+			    margin-right: 10px;
+			    color: #fff;
+			    margin-top: 35px;
+			}
+			input{
+				outline: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="rp_scRpay">
+			<div class="nav_bg_color" style="min-height: 176px;">
+				<div class="nav_bg">
+				<div class="nav">
+					<a href="index.php?ctl=user&amp;act=home" style="color: #FFFFFF;"><img src="public/web/images/sgc/back_arrow.png" /><label class="i18n" name="i18nSl"></label></a>
+				</div>
+				</div>
+				<div style="padding-left: 1rem;">
+				<p style="float: left;font-size: 14px;line-height: 100px;" class="i18n" name="i18nHoldNum">
+					
+				</p>
+				<span class="i18n hyhz" name="i18nUserEx"></span>
+				<p style="float: left;width: 100%;">
+					<span style="font-size: 30px;display:inline-block;margin-top: 6px;padding-bottom: 10px;">{%$slCoin%}</span>
+					<span style="margin-top: 8px;" class="rp_scRpay_release i18n" name="i18nTsfOutWallet"></span> 
+				</p>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+			<div class="rp_scRpay_dataT">
+				<table style="border-collapse: collapse;">
+					<tr>
+						<th class="i18n" name="i18nTime"></th>
+						<th class="i18n" name="i18nType"></th>
+						<th class="i18n" name="i18nNum"></th>
+					</tr>
+					{%foreach from=$slLog item=item%}
+					<tr>
+						<td class="time">{%$item.createtime%}</td>
+						<td>{%$item.comment_type%}</td>
+						<td class="rp_scRpay_dataT_leftmoney">{%$item.money%}</td>
+					</tr>
+					{%/foreach%}
+				</table>
+				
+			</div>
+			<div class="sgc_slAcc_hz hide">
+				<div class="sgc_slAcc_hz_box hide" style="display: flex;flex-direction: column;">
+					<div class="sgc_slAcc_hz_input" style="">
+						<p style="border-bottom: 1px solid #F3F3F3;">
+							<label class="i18n" name="i18nTsfOut"></label>
+							<span style="color: red;" class="i18n" name="i18nWallet1"></span></p>
+						<p><label class="i18n" name="i18nHoldNum1"></label><span style="float: right;"><span>{%$slCoin%}</span>SGC</span></p>
+						<p class="i18n" name="i18nOutNum"></p>
+						<p style="border: 1px solid #000000;margin-bottom: 20px;">
+							<input type="text" style="width: 79%;outline: none;" class="i18n-input sl_coin" selectname="i18nWriteNum" selectattr="placeholder" />
+							<span style="text-align: center;display: inline-block;width: 18%;">SGC</span> 
+						</p>
+						<p style="border: 1px solid #000000;margin-bottom: 10px;">
+							<input style="width: 60%;outline: none;" type="password"  class="i18n-input user_pwd_trade" selectname="i18nTbTrade1" selectattr="placeholder" />
+							<span style="text-align: center;display: inline-block;width: 35%;" class="i18n" name="i18nTradePwd2"></span>
+						</p>
+						<span style="font-size: 14px;color: #7291E3;float: right;" class="i18n all_zc" name="i18nTsfAll"></span>
+					</div>
+					<div class="sgc_slAcc_hz_btn" style="margin-top: 22px;">
+						<div class="sgc_slAcc_hz_cancel i18n" name="i18nCancel" style="border-right: 1px solid #D3D3D3;"></div>
+						<div class="i18n zc_btn" id="{%$userInfo.id%}" name="i18nConfirm" style="color: #D9B140;"></div>
+					</div>
+				</div>
+				<div class="sgc_slAcc_hz_box_hyhz hide" style="background: #fff;margin: 0 auto;margin-top: 50px;width: 300px;">
+					<div class="sgc_slAcc_hz_input">
+						<p style="border-bottom: 1px solid #F3F3F3;">
+							<span style="color: red;" class="i18n" name="i18nUserEx"></span>
+						</p>
+						<p><label class="i18n" name="i18nHoldNum1"></label><span style="float: right;"><span>{%$slCoin%}</span>SGC</span></p>
+						<p style="border: 1px solid #000000;margin-bottom: 10px;"><input type="text" class="i18n-input userName" selectattr="placeholder" selectname="i18nUser_name" style="border: none;"/></p>
+						<p style="border: 1px solid #000000;margin-bottom: 10px;"><input type="text" class="i18n-input phoneNumber" selectattr="placeholder" selectname="i18nUser_mobile" style="border: none;"/></p>
+						<!--<p class="i18n" name="i18nOutNum"></p>-->
+						<p style="border: 1px solid #000000;margin-bottom: 10px;">
+							<input type="text" style="width: 79%;outline: none;" class="i18n-input slCoin" selectname="i18nWriteNum" selectattr="placeholder" />
+							<span style="text-align: center;display: inline-block;width: 18%;">SGC</span> 
+						</p>
+						<p style="border: 1px solid #000000;margin-bottom: 10px;">
+							<input style="width: 60%;outline: none;" type="password"  class="i18n-input userPwdTrade" selectname="i18nTbTrade1" selectattr="placeholder" />
+							<span style="text-align: center;display: inline-block;width: 35%;" class="i18n" name="i18nTradePwd2"></span>
+						</p>
+					</div>
+					<div class="sgc_slAcc_hz_btn" style="margin-top: 30px;">
+						<div class="close_btn i18n" name="i18nCancel" style="border-right: 1px solid #D3D3D3;"></div>
+						<div class="i18n hyzc_btn" id="{%$userInfo.id%}" name="i18nConfirm" style="color: #D9B140;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(".hyhz").click(function(){
+				$('.sgc_slAcc_hz').removeClass('hide');
+				$('.sgc_slAcc_hz_box_hyhz').removeClass('hide');
+			})
+			$(".close_btn").click(function(){
+				$('.sgc_slAcc_hz').addClass('hide');
+				$('.sgc_slAcc_hz_box_hyhz').addClass('hide');
+				window.location.reload();
+			})
+			$(".all_zc").click(function(){
+				$(".sl_coin").val({%$slCoin%});
+			})
+			$('.rp_scRpay_release').click(function(){
+				$('.sgc_slAcc_hz').removeClass('hide');
+				$('.sgc_slAcc_hz_box').removeClass('hide');
+			})
+			$('.sgc_slAcc_hz_cancel').click(function(){
+				$('.sgc_slAcc_hz').addClass('hide');
+				$('.sgc_slAcc_hz_box').addClass('hide');
+				window.location.reload();
+			})
+			jQuery(function($){
+				var time = document.getElementsByClassName('time');
+				for(var i=0;i<time.length;i++){
+					time[i].innerText = date(time[i].innerText);
+				}
+		   })
+			$(".zc_btn").click(function(){
+				var id = $(this).attr("id");
+				var sl_coin = $(".sl_coin").val();
+				var user_pwd_trade = $(".user_pwd_trade").val();
+				var coin = {%$slCoin%};
+				if(coin < sl_coin){
+					alert('余额不足');
+					return false;
+				}else if(user_pwd_trade == ""){
+					alert('交易密码不能为空');
+					return false;
+				}else if(sl_coin == ""){
+					alert("数量不能为空");
+					return false;
+				}else
+				$.post("api/index.php?ctl=user&act=sl_coin_a_coin",{"id":id,"money":sl_coin,"user_pwd_trade":user_pwd_trade},function(data){
+					if(data){
+						if(data.status == true){
+							alert(data.msg);
+							window.location.reload();
+						}else{
+							alert(data.msg);
+							return false;
+						}
+					}
+				},"json")
+			})
+			
+			//会员互转
+			$(".hyzc_btn").click(function(){
+				var id = $(this).attr("id");
+				var sl_coin = $(".slCoin").val();
+				var user_pwd_trade = $(".userPwdTrade").val();
+				var coin = {%$slCoin%};
+				var user_name = $(".userName").val();
+				var phone_number = $(".phoneNumber").val();
+				if(user_name == ""){
+					alert('用户名不能为空');
+					return false;
+				}else if(phone_number == ""){
+					alert('账号不能为空');
+					return false;
+				}else if(coin < sl_coin){
+					alert('余额不足');
+					return false;
+				}else if(user_pwd_trade == ""){
+					alert('交易密码不能为空');
+					return false;
+				}else if(sl_coin == ""){
+					alert("数量不能为空");
+					return false;
+				}else
+				$.post("api/index.php?ctl=user&act=user_user",{"id":id,"money":sl_coin,"user_pwd_trade":user_pwd_trade,"user_name":user_name,"phone_number":phone_number},function(data){
+					if(data){
+						if(data.status == true){
+							alert(data.msg);
+							window.location.reload();
+						}else{
+							alert(data.msg);
+							return false;
+						}
+					}
+				},"json")
+			})
+		</script>
+	</body>
+</html>

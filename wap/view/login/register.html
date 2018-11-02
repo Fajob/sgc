@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta id="i18n_pagename" content="common">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!--<link rel="stylesheet" type="text/css" href="/public/css/media-100.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/login-style.css"/>-->
+		<link rel="stylesheet" href="public/css/sgc/sgc_style.css" />
+		<script src="/public/js/jquery-2.1.4.min.js"></script>
+		<script src="public/js/layer/layer.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js" ></script>
+	</head>
+	<style type="text/css">
+		/*input{
+			outline: none;
+		}*/
+		body{
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	</style>
+	<body>
+		<div class="sgc_login">
+			<p class="sgc_login_reg">
+				<!--<a href="javascript:history.back(-1);"><img style="margin-left: 0;margin-right: 5px;" src="public/web/images/sgc/back_arrow2.png" />
+				<label class="i18n" name="i18nRegister"></label>
+				</a>-->
+			</p>
+			<p class="sgc_login_logo">
+				<img src="public/web/images/sgc/logo.png" />
+			</p>
+			<form class="sgc_login_form">
+				<p>
+					<img src="public/web/images/sgc/phone_num.png" />
+					<input id="phone_number" name="phone_number" type="text" class="i18n-input" selectname="i18nPhoneNum1" selectattr="placeholder" />
+				</p>
+				<p>
+					<img src="public/web/images/sgc/login_pwd.png" />
+					<input type="password" name="user_pwd" min="6" maxlength="20" class="login-input-user i18n-input" selectname="i18nLogPwd1" selectattr="placeholder" />
+				</p>
+				<p>
+					<img src="public/web/images/sgc/trade_pwd.png" />
+					<input type="password" name="user_pwd_trade" maxlength="6" class="login-input-user i18n-input" selectname="i18nTradePwd" selectattr="placeholder"/>
+				</p>
+				<p>
+					<img src="public/web/images/mine_light.png" />
+					<span style="height: 100%;line-height: 100%;padding-left: 10px;" class="i18n" name="i18nRecommender"></span>
+					<input style="width: 40%;background: rgba(0,0,0,.0);" id="t_id" type="text" maxlength="6" class="login-input-user" value="" disabled="true"/>
+					<input type="hidden" class="t_id" name="invite_code" value=""/>
+				</p>
+				<p>
+					<img src="public/web/images/sgc/verify_code.png" />
+					<input name="code" style="width: 45%;" type="text" class="login-input-user i18n-input" selectname="i18nYzm1" selectattr="placeholder"/>
+					<input type="button" style="width: 100px;line-height: 30px;" class="sgc_login_msgVerifyCode log_btn_verificode i18n-input" selectname="i18nGetYzm" selectattr="value" />
+				</p>
+			</form>
+			<p class="sgc_login_btn">
+				<button type="button" class="i18n" name="i18nConfirm"></button>
+			</p>
+		</div>
+			
+	</body>
+	<script>
+		$(window).ready(function(){
+			var _url = window.location.search;
+			var _url1 = _url.split("=")[3].split(/\D+/)[0];
+			$("#t_id").val(_url1);
+			$(".t_id").val(_url1);
+		})
+		$(document).on("click",".sgc_login_btn button",function(){
+			var _data = $(".sgc_login_form").serialize();
+			$.post("api/index.php?ctl=user&act=do_register",_data,function(data){
+				if(data){
+					var obj = eval("("+data+")");
+					if(obj.status == true){
+						layer.msg(obj.msg,function(){
+							window.location.href="public/sgc_download.html";
+//							window.location.href="index.php?ctl=user&act=do_login";
+						})
+					}else{
+						layer.msg(obj.msg,function(){
+							return false;
+						})
+					}
+				}
+			})
+		})
+//		获取验证码
+		$(document).on("click",".log_btn_verificode",function(){
+			var phone_number = $("#phone_number").val();
+			$.ajax({
+				type:"post",
+				url:"sms.php?",
+				async:false,
+				data:"phone_number="+phone_number,
+				success:function(data){
+					if(data){
+					var obj = eval("("+data+")");
+					if(obj.status == true){
+						timing();
+					}else{
+						layer.msg(obj.msg,function(){
+							
+						})
+					}
+					}
+				}
+			});
+		})
+		
+		var userLanguage = getCookie("userLanguage");
+		if(!userLanguage){
+			userLanguage = 'zh-CN';
+		}
+		//发送验证码倒计时
+		var time=60; 
+		function timing() { 
+			if (time == 0) { 
+				$(".log_btn_verificode").attr("disabled",false);
+				if (userLanguage == 'en'){
+					$(".log_btn_verificode").val("Reacquire");
+				}else{
+					$(".log_btn_verificode").val("重新获取");
+				}  
+				$('.log_btn_verificode').css("background-color","#7291e3");
+				time = 60; 
+				return;
+			} else { 
+				$(".log_btn_verificode").attr("disabled", true); 
+				if (userLanguage == 'en'){
+					$(".log_btn_verificode").val(time + "s"); 
+				}else{
+					$(".log_btn_verificode").val(time + "s后重试"); 
+				}
+				$('.log_btn_verificode').css("background-color","#bbb");
+				time--; 
+				setTimeout(function() { 
+					timing() 
+				},1000) 
+			} 
+		} 
+		/*获取邀请码*/
+/*		var thisURL = document.URL;
+		var getval = thisURL.split('&');
+		var inviteC = getval[getval.length-1].split('=');
+		if(inviteC[0] == 'code' && inviteC.length != 0){
+			$('.log_nav').addClass('none');
+			inviteC = inviteC[1];
+			$('input[name="invite_code"]').val(inviteC);
+		}*/
+	</script>
+</html>

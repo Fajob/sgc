@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta id="i18n_pagename" content="common">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="public/js/jquery-2.1.4.min.js"></script>
+		<script src="public/js/layer/layer.js"></script>
+		<script type="text/javascript" src="public/js/sgc/sgc.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js"></script>
+		<link rel="stylesheet" href="public/css/sgc/sgc_style.css" />
+		<!--<link rel="stylesheet" href="/public/css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/media-100.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/login-style.css"/>-->
+	</head>
+	<style>
+		/*.sps-pay-in-property>p{
+			padding-left: 3%;
+		}
+		.sps-pay-out-2dcode{
+			text-align: center;
+		}
+		.sps-pay-out-rightbtn{
+			color: #FFFFFF;
+			background-color: #00D1FF;
+		}
+		.sps-pay-out-leftbtn{
+			color: #00D1FF;
+			background-color: #FFFFFF;
+		}*/
+		
+		.sgc_cbtb_2code {
+			padding-top: 20px;
+			text-align: center;
+		}
+		
+		.sgc_cbtb_2code img {
+			width: 150px;
+			height: 150px;
+		}
+		
+		.rp_rpay_out_addr::-webkit-input-placeholder {
+			/* WebKit browsers */
+			color: #e3e3e3;
+		}
+		
+		.rp_rpay_out_addr:-moz-placeholder {
+			/* Mozilla Firefox 4 to 18 */
+			color: #e3e3e3;
+		}
+		
+		.rp_rpay_out_addr::-moz-placeholder {
+			/* Mozilla Firefox 19+ */
+			color: #e3e3e3;
+		}
+		
+		.rp_rpay_out_addr:-ms-input-placeholder {
+			/* Internet Explorer 10+ */
+			color: #e3e3e3;
+		}
+		
+		.rp_rpay_out_pwd span {
+			position: relative;
+		}
+		
+		input {
+			outline: none;
+		}
+		
+		.sgc_cbtb_input {
+			float: right;
+			margin-top: 5px;
+		}
+		
+		.sgc_cbtb_input::-webkit-input-placeholder {
+			/* WebKit browsers */
+			color: #e3e3e3;
+		}
+		
+		.sgc_cbtb_input:-moz-placeholder {
+			/* Mozilla Firefox 4 to 18 */
+			color: #e3e3e3;
+		}
+		
+		.sgc_cbtb_input::-moz-placeholder {
+			/* Mozilla Firefox 19+ */
+			color: #e3e3e3;
+		}
+		
+		.sgc_cbtb_input:-ms-input-placeholder {
+			/* Internet Explorer 10+ */
+			color: #e3e3e3;
+		}
+	</style>
+
+	<body>
+		<div class="rp_rpay">
+			<div class="nav_bg">
+				<div class="nav">
+					<a href="index.php?ctl=user&act=home" style="color: #FFFFFF;"><img src="public/web/images/sgc/back_arrow.png" />
+						<label class="i18n" name="i18nCbtb1"></label>
+					</a>
+				</div>
+			</div>
+			<!--转入-->
+			<div class="sps-pay-in-title">
+				<div class="sps-pay-in-btn">
+					<a href="index.php?ctl=translate">
+						<div class="sps-pay-in-leftbtn i18n" name="i18nCb"></div>
+					</a>
+					<a href="index.php?ctl=translate&act=out">
+						<div class="sps-pay-in-rightbtn active i18n" name="i18nTb"></div>
+					</a>
+				</div>
+			</div>
+			<div class="rp_rpay_out">
+				<p class="rp_rpay_out_yuE">
+					<label class="i18n" name="i18nWalletacc"></label>
+					<span><b>{%$user_info.a_coin%}</b></span><span>SGC</span>
+				</p>
+				<p style="line-height: 50px;" class="i18n" name="i18nTbAddress"></p>
+				<input id="toAddress" class="rp_rpay_out_addr i18n-input" selectname="i18nTbAddr" selectattr="placeholder" />
+				<p class="rp_rpay_out_num">
+					<label class="i18n" name="i18nTb1"></label>
+					<input id="num" class="sgc_cbtb_input" type="text" placeholder="0.00" />
+				</p>
+
+				<p class="rp_rpay_out_pwd">
+					<label class="i18n" name="i18nTradePwd1"></label>
+					<input id="userPwTrade" type="password" class="sgc_cbtb_input i18n-input" selectname="i18nTbTrade" selectattr="placeholder" />
+				</p>
+
+				<p class="rp_rpay_out_pwd">
+					<label class="i18n" name="i18nYzm2"></label>
+					<input type="text" style="margin-left: 1rem;" id="code" class="sgc_cbtb_input i18n-input" selectname="i18nTbVerified" selectattr="placeholder" />
+				</p>
+				<p><input type="button" style="margin-top: -45px;border: none;text-align: right;width: 80px;background: none;" id="get_code" class="sgc_cbtb_verifyCode i18n-input" selectname="i18nGetYzm" selectattr="value" /></p>
+			</div>
+			<div class="sgc_confirm_box" style="padding-top: 30px;">
+				<button id="confirmOut" class="sgc_confirm1 i18n" name="i18nConfirmTb" type="button"></button>
+			</div>
+			<div class="sgc_confirm_box" style="padding-top: 20px;">
+				<a href="index.php?ctl=translate&act=out_record"><button style="background-color: #3acc0c;" class="sgc_confirm i18n" name="i18nTbRecord" type="button"></button></a>
+			</div>
+			{%if $user_info.real_name eq '' or $user_info.real_name eq null or $user_info.real_name eq undefine%}
+			<div class="sgc_cbtb_smts">
+				<div class="sgc_cbtb_smts_box">
+					<p style="line-height: 50px;border-bottom: 1px solid #F3F3F3;"><b class="i18n" name="i18nSmts"></b><img src="public/web/images/sgc/sm_notice.png" /> </p>
+					<p class="i18n" name="i18nSmtsCont" style="text-align: justify;font-size: 14px;padding: 10px;color: gray;height: 90px;overflow: scroll;word-break: break-all;"></p>
+					<p>
+						<a class="i18n" name="i18nQushiming" href="index.php?ctl=setting&act=smrz"></a>
+					</p>
+				</div>
+			</div>
+			{%/if%}
+		</div>
+		<script>
+			$('#confirmOut').click(function() {
+				var id = '{%$user_info.id%}';
+				var address = $('#toAddress').val();
+				var money = $('#num').val();
+				var userPwTrade = $('#userPwTrade').val();
+				var code = $('#code').val();
+				$.post('api/index.php?ctl=user&act=do_eth_log', {
+					'id': id,
+					'address': address,
+					'money': money,
+					'user_pwd_trade': userPwTrade,
+					'code':code
+				}, function(data) {
+					if(data) {
+						var obj = eval('(' + data + ')');
+						if(obj.status == true) {
+							window.location.href = "index.php?ctl=translate&act=out_record";
+						} else {
+							layer.msg(obj.msg, function() {
+
+							});
+						}
+					} else {
+						alert('服务器返回一个错误');
+					}
+				})
+			})
+			//获取验证码
+			$(document).on("click","#get_code",function(){
+				var phone_number = {%$user_info.phone_number%};
+				$.ajax({
+					type:"post",
+					url:"sms.php?",
+					async:false,
+					data:"phone_number="+phone_number,
+					success:function(data){
+						if(data){
+						var obj = eval("("+data+")");
+						if(obj.status == true){
+							timing();
+						}else{
+							layer.msg(obj.msg,function(){
+								
+							})
+						}
+						}
+					}
+				});
+			})
+			var userLanguage = getCookie("userLanguage");
+			if(!userLanguage){
+				userLanguage = 'zh-CN';
+			}
+			//发送验证码倒计时
+			var time=60; 
+			function timing() { 
+				if (time == 0) { 
+					$("#get_code").attr("disabled",false);
+					if (userLanguage == 'en'){
+						$("#get_code").val("Reacquire");
+					}else{
+						$("#get_code").val("重新获取");
+					} 
+	//				$('#get_code').css("background-color","#7291e3");
+					$('#get_code').css("color","#7AB4FF");
+					time = 60; 
+					return;
+				} else { 
+					$("#get_code").attr("disabled", true); 
+					if (userLanguage == 'en'){
+						$("#get_code").val(time + "s"); 
+					}else{
+						$("#get_code").val(time + "s后重试"); 
+					}
+	//				$('#get_code').css("background-color","#bbb");
+					$('#get_code').css("color","#7AB4FF");
+					time--; 
+					setTimeout(function() { 
+						timing() 
+					},1000) 
+				} 
+			}
+		</script>
+	</body>
+
+</html>

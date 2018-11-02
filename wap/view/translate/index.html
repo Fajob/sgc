@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta id="i18n_pagename" content="common">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="public/js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="public/js/sgc/sgc.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js"></script>
+		<link rel="stylesheet" href="public/css/sgc/sgc_style.css" />
+		<!--<link rel="stylesheet" href="/public/css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/media-100.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/login-style.css"/>-->
+	</head>
+	<style>
+		/*.sps-pay-in-2dright{
+			width: 100%;
+		}
+		.sps-pay-in-2dcode {
+		    background: #4C555B;
+		    padding-left: 3%;
+		    padding-right: 3%;
+		    margin-top: 30px;
+		    height: 120px;
+		    margin-left: 0;
+		}
+		.sps-pay-in-property>p{
+			padding: 0 3%;
+		}
+		.sps-pay-in-2dright{
+			float: left;
+			position: none !important;
+		}
+		.sps-pay-in-2dright a{
+			float: left;
+			position: none !important;
+		}
+		.sps-pay-in-2dright img:first-child{
+			float: left;
+		}
+		.sps-pay-in-2dright span{
+			float: left;
+			position: none !important;
+		}
+		.sps-pay-out-leftbtn{
+			color: #FFFFFF;
+			background-color: #00D1FF;
+		}
+		.sps-pay-out-rightbtn{
+			color: #00D1FF;
+			background-color: #FFFFFF;
+		}*/
+		
+		.sgc_cbtb_2code {
+			padding-top: 20px;
+			text-align: center;
+		}
+		
+		.sgc_cbtb_2code img {
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+
+	<body>
+		<div class="rp_rpay">
+			<div class="nav_bg">
+				<div class="nav">
+					<a href="index.php?ctl=user&act=home" style="color: #FFFFFF;"><img src="public/web/images/sgc/back_arrow.png" />
+						<label class="i18n" name="i18nCbtb1"></label>
+					</a>
+				</div>
+			</div>
+			<!--转入-->
+			<div class="sps-pay-in-title">
+				<div class="sps-pay-in-btn">
+					<a href="index.php?ctl=translate">
+						<div class="sps-pay-in-leftbtn active i18n" name="i18nCb"></div>
+					</a>
+					<a href="index.php?ctl=translate&act=out">
+						<div class="sps-pay-in-rightbtn i18n" name="i18nTb"></div>
+					</a>
+				</div>
+			</div>
+			<div class="sgc_cbtb_2code">
+				<img src="public/web/images/sgc/logo.png" />
+			</div>
+			<div class="sps-pay-in-property">
+				<p onclick="copy($(this).text())" style="height: 50px;overflow-x: scroll;">{%$user_info.eth_address%}</p>
+			</div>
+			<div class="sps-pay-in-2dcode">
+				<p><label class="i18n" name="i18nCbnotice"></label></p>
+				<p style="font-size: 14px;" class="i18n" name="i18nCbCopy"></p>
+				<a href="http://www.owncoins.net">
+					<p style="color: #D9B140;"><label class="i18n" name="i18nCbDownload"></label></p>
+				</a>
+			</div>
+			<div class="sps-pay-in-detail">
+				<div class="sps-pay-in-detail-cont">
+					<table>
+						<thead>
+							<tr>
+								<td><label class="i18n" name="i18nTime"></label></td>
+								<td><label class="i18n" name="i18nBiType"></label></td>
+								<td><label class="i18n" name="i18nNum"></label></td>
+							</tr>
+						</thead>
+						<tbody>
+							{%foreach from=$coinLog item=item1%}
+							<tr>
+								<td class="time">{%$item1.addtime%}</td>
+								<td>{%$item1.coinname%}</td>
+								<td class="rp_scRpay_dataT_leftmoney">{%$item1.num%}</td>
+							</tr>
+							{%/foreach%}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!--<div class="sps-pay-in">
+			<div class="sps-pay-in-title">
+				<div class="sps-pay-in-btn">
+					<a href="index.php?ctl=translate"><div class="sps-pay-out-leftbtn">转入</div></a>
+					<a href="index.php?ctl=translate&act=out"><div class="sps-pay-out-rightbtn">转出</div></a>
+				</div>
+			</div>
+			<div class="sps-pay-in-property">
+				<p class="sps-pay-in-property-cont">
+					<span>SPS资产：</span>
+					<span></span>
+				</p>
+				<p id="copyText"></p>
+				<div class="sps-pay-in-2dcode">
+					<div class="sps-pay-in-2dpicture" style="float: left;"><img src="/public/web/images/2d_code.png" /> </div>
+					<div class="sps-pay-in-2dright">
+						<a href="/public/web/images/2d_code.png" download="2d_code.png"><img src="/public/web/images/download.png"/>
+						<span class="sps-pay-in-2ddownload">下载</span></a>
+						<a onclick="copyContent('copyText')" href="javascript:;"><img src="/public/web/images/copy.png"/>
+						<span class="sps-pay-in-2dcopy">复制</span></a>
+					</div>
+				</div>
+			</div>
+			<div class="sps-pay-in-detail">
+				<div class="sps-pay-in-detail-title">
+					<img src="/public/web/images/detail.png" />
+					<span>转入明细</span>
+				</div>
+				<div class="sps-pay-in-detail-cont">
+					<table>
+						<thead>
+							<tr>
+								<td>日期</td>
+								<td>用户</td>
+								<td>数额</td>
+								<td>状态</td>
+							</tr>
+						</thead>
+						<tbody>
+							{%foreach from=$data item=item1%}
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							{%/foreach%}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="footer">
+		        <table>
+					<tr>
+						<td>
+							<a href="index.php?ctl=user&act=home">
+		                    <span><img class="bottomMenuIcon" style="height: 25px;" src="/public/web/images/home_dark.png"/></span>
+		                    <div style="color: #D4C9B4;" class="bottomMenuWords">首页</div></a>
+						</td>
+						<td>
+							<a href="index.php?ctl=mall">
+		                    <span><img class="bottomMenuIcon" style="height: 25px;" src="/public/web/images/market_dark.png"/></span>
+		                    <div style="color: #D4C9B4;" class="bottomMenuWords">SPS商城</div></a>
+						</td>
+						<td>
+							<a href="index.php?ctl=mall&act=cart_detail">
+		                    <span><img class="bottomMenuIcon" style="height: 25px;" src="/public/web/images/shoppingcar_dark.png"/></span>
+		                    <div style="color: #D4C9B4;" class="bottomMenuWords">购物车</div></a>
+						<td>
+							<a href="index.php?ctl=translate">
+		                    <span><img class="bottomMenuIcon" style="height: 25px;" src="/public/web/images/pay_light.png"/></span>
+		                    <div style="color: #00D1FF;" class="bottomMenuWords">SPS支付</div></a>
+						</td>
+						<td>
+							<a href="index.php?ctl=user&act=myinfo">
+		                    <span><img class="bottomMenuIcon" style="height: 25px;" src="/public/web/images/mine_dark.png"/></span>
+		                    <div style="color: #D4C9B4;" class="bottomMenuWords">我的</div></a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>-->
+		<script>
+			jQuery(function($){
+				var time = document.getElementsByClassName('time');
+				for(var i=0;i<time.length;i++){
+					time[i].innerText = date(time[i].innerText);
+				}
+		   	})
+			function copy(message) {
+				var input = document.createElement("input");
+				input.value = message;
+				document.body.appendChild(input);
+				input.select();
+				input.setSelectionRange(0, input.value.length), document.execCommand('Copy');
+				document.body.removeChild(input);
+				alert("复制成功");
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta id="i18n_pagename" content="common">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="public/css/sgc/sgc_style.css" />
+		<script type="text/javascript" src="public/js/sgc/jquery-2.1.4.min.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/sgc.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js"></script>
+		<title></title>
+		<style>
+			.sgc_lock label{
+				width: 17.3%;
+			    position: relative;
+			    text-align: center;
+			    display: inline-block;
+			    background-color: #fff;
+			    border-radius: 5px;
+			    /* opacity: 0.3; */
+			    border: 1px solid gray;
+			}
+			.sgc_lock_days input{
+				width: 33.3% !important;
+				float: left;
+			}
+			.sgc_lock_days{
+				margin-top: -40px;
+			}
+			.sgc_slAcc_hz_box{
+				margin-top: 70px;
+				height: 409px;
+			}
+			.days_active{
+				background-color: #3acc0c !important;
+			}
+			.sgc_outto_wallet{
+				width: 100%;
+			    min-height: 680px;
+			    background-color: rgba(0,0,0,.3);
+			    position: fixed;
+			    top: 62px;
+			}
+			.rp_scRpay_release{
+				/*width: 110px;*/
+			}
+		</style>
+	</head>
+	<body>
+		<div class="rp_scRpay">
+			<div class="nav_bg_color">
+				<div class="nav_bg">
+				<div class="nav">
+					<a href="javascript:history.back(-1)" style="color: #FFFFFF;"><img src="public/web/images/sgc/back_arrow.png" />
+						<label class="i18n" name="i18nDeposit"></label>
+					</a>
+				</div>
+				</div>
+				<div style="padding-left: 1rem;margin-bottom: 28px;">
+				<p style="font-size: 14px;line-height: 100px;" class="i18n" name="i18nHoldNum"></p>
+				<a style="color: #FFFFFF;" href="javascript:;"><span style="margin-top: -60px;background-color: #3acc0c;" class="rp_scRpay_release sgc_deposit_regularly i18n" name="i18nSaveFix"></span></a> 
+				<p>
+					<span style="font-size: 30px;display:inline-block;">{%$userData.coin%}</span>
+					<a style="color: #FFFFFF;" href="javascript:;"><span class="rp_scRpay_release sgc_outto i18n" name="i18nTsfOutWallet">{%$userData.coin_lilv%}%</span></a> 
+				</p>
+				</div>
+				<div class="rp_scRpay_word">
+					<table>
+						<tr>
+							<td>
+								<p class="i18n" name="i18nCurRate"></p>
+								<p>{%$userData.coin_lilv%}</p>
+							</td>
+							<td class="i18n" name="i18nWalletNotice">
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="rp_scRpay_dataT">
+				<table style="border-collapse: collapse;">
+					<tr>
+						<th class="i18n" name="i18nTime"></th>
+						<th class="i18n" name="i18nType"></th>
+						<th class="i18n" name="i18nNum"></th>
+					</tr>
+					{%foreach from=$coinLog item=item%}
+					<tr>
+						<td class="time">{%$item.createtime%}</td>
+						<td>{%$item.comment_type%}</td>
+						<td class="rp_scRpay_dataT_leftmoney">{%$item.money%}</td>
+					</tr>
+					{%/foreach%}
+				</table>
+				
+			</div>
+			<div class="sgc_slAcc_hz hide">
+				<div class="sgc_slAcc_hz_box">
+					<form id="obj1">
+					<div class="sgc_slAcc_hz_input">
+						<p style="border-bottom: 1px solid #F3F3F3;"><label class="i18n" name="i18nTsfIn"></label><span style="color: red;" class="i18n" name="i18nFixedAcc"></span></p>
+						<p><label class="i18n" name="i18nHoldNum1"></label><span style="float: right;"><span>{%$userData.coin%}</span>SGC</span></p>
+						<p><label class="i18n" name="i18nLockDays"></label></p>
+						<p class="sgc_lock">
+							<label style="margin-left: 20px;" for="s" class="s days_active i18n" name="i18ndays1"></label>
+							<label style="margin-left: 34px;" for="m" class="m i18n" name="i18ndays2"></label>
+							<label style="margin-left: 35px;" for="l" class="l i18n" name="i18ndays3"></label>
+						</p>
+						<p class="sgc_lock_days">
+							<input type="radio" checked="checked" name="day" id="s" value="30"/>
+							<input type="radio" name="day" id="m" value="60"/>
+							<input type="radio" name="day" id="l" value="90"/>
+						</p>
+						<p class="i18n" name="i18nOutNum"></p>
+						<p style="border: 1px solid #000000;margin-bottom: 20px;">
+							<input type="text" style="width: 79%;" class="i18n-input money1" selectname="i18nWriteNum" selectattr="placeholder"/>
+							<span style="text-align: center;display: inline-block;width: 18%;">SGC</span> 
+						</p>
+						<p style="border: 1px solid #000000;margin-bottom: 10px;">
+							<input style="width: 62%;" type="password" class="i18n-input pw1" selectname="i18nTbTrade1" selectattr="placeholder" />
+							<span style="text-align: center;display: inline-block;width: 35%;" class="i18n" name="i18nTradePwd2"></span> 
+						</p>
+						<span style="font-size: 14px;color: #7291E3;float: right;" class="i18n all_a" name="i18nTsfAllin"></span>
+					</div>
+					</form>
+					<div class="sgc_slAcc_hz_btn">
+						<div class="sgc_slAcc_hz_cancel i18n" name="i18nCancel" style="border-right: 1px solid #D3D3D3;"></div>
+						<div style="color: #D9B140;" id="{%$user_info.id%}" class="i18n go_d_btn" name="i18nConfirm"></div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			<div class="sgc_outto_wallet hide">
+				<div class="sgc_slAcc_hz_box" style="height: 329px;">
+					<form id="obj2">
+					<div class="sgc_slAcc_hz_input">
+						<p style="border-bottom: 1px solid #F3F3F3;"><label class="i18n" name="i18nTsfOut"></label><span style="color: red;" class="i18n" name="i18nWallet1"></span></p>
+						<p><label class="i18n" name="i18nHoldNum1"></label><span style="float: right;"><span>{%$userData.coin%}</span>SGC</span></p>
+						<p class="i18n" name="i18nOutNum"></p>
+						<p style="border: 1px solid #000000;margin-bottom: 20px;">
+							<input type="text" style="width: 79%;" class="i18n-input money2" selectname="i18nWriteNum" selectattr="placeholder"/>
+							<span style="text-align: center;display: inline-block;width: 18%;">SGC</span> 
+						</p>
+						<p style="border: 1px solid #000000;margin-bottom: 10px;">
+							<input style="width: 62%;" type="password" class="i18n-input pw2" selectname="i18nTbTrade1" selectattr="placeholder" />
+							<span style="text-align: center;display: inline-block;width: 35%;" class="i18n" name="i18nTradePwd2"></span> 
+						</p>
+						<span style="font-size: 14px;color: #7291E3;float: right;" class="i18n all_b" name="i18nMaxOut"></span>
+					</div>
+					</form>
+					<div class="sgc_slAcc_hz_btn">
+						<div class="sgc_slAcc_hz_cancel i18n" name="i18nCancel" style="border-right: 1px solid #D3D3D3;"></div>
+						<div style="color: #D9B140;" id="{%$user_info.id%}" class="i18n go_m_btn" name="i18nConfirm"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$('.sgc_deposit_regularly').click(function(){
+				$('.sgc_slAcc_hz').removeClass('hide');
+			})
+			$('.sgc_outto').click(function(){
+				$('.sgc_outto_wallet').removeClass('hide');
+			})
+			$('.sgc_slAcc_hz_cancel').click(function(){
+				$('.sgc_slAcc_hz').addClass('hide');
+				$('.sgc_outto_wallet').addClass('hide');
+				window.location.reload();
+			})
+			$('label').click(function(){
+				$(this).addClass('days_active').siblings().removeClass('days_active')
+			})
+			jQuery(function($){
+				var time = document.getElementsByClassName('time');
+				for(var i=0;i<time.length;i++){
+					time[i].innerText = date(time[i].innerText);
+				}
+		   	})
+			
+			//定期
+			$(".go_d_btn").click(function(){
+				var id = $(this).attr("id")
+				var old_coin = {%$userData.coin%};
+				var money = $(".money1").val();
+				var day = $('input[name="day"]:checked').val();
+				var user_pwd_trade = $(".pw1").val();
+				if(money > old_coin){
+					alert("所用余额不足");
+					$(".money1").val("");
+					return false;
+				}else if(money == ""){
+					alert("数量不能为空");
+					return false;
+				}else{
+					$.post("api/index.php?ctl=user&act=coin_zc_coin",{"day":day,"id":id,"money":money,"user_pwd_trade":user_pwd_trade},function(data){
+						if(data){
+							if(data.status == true){
+								alert(data.msg);
+								window.location.reload();
+							}else{
+								alert(data.msg);
+								return false;
+							}
+						}
+					},"json")
+				}
+			})
+			
+			
+			//转出钱包
+			$(".go_m_btn").click(function(){
+				var id = $(this).attr("id")
+				var old_coin = {%$userData.coin%};
+				var money = $(".money2").val();
+				var user_pwd_trade = $(".pw2").val();
+				if(money > old_coin){
+					alert("所用余额不足");
+					$(".money2").val("");
+					return false;
+				}else if(money == ""){
+					alert("数量不能为空");
+					return false;
+				}else{
+					$.post("api/index.php?ctl=user&act=coin_a_coin",{"id":id,"money":money,"user_pwd_trade":user_pwd_trade},function(data){
+						if(data){
+							if(data.status == true){
+								alert(data.msg);
+								window.location.reload();
+							}else{
+								alert(data.msg);
+								return false;
+							}
+						}
+					},"json")
+				}
+			})
+			
+			
+			$(".all_a").click(function(){
+				$(".money1").val({%$userData.coin%});
+			})
+			$(".all_b").click(function(){
+				$(".money2").val({%$userData.coin%});
+			})
+			
+		</script>
+	</body>
+</html>

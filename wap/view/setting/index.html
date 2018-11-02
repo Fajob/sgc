@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta id="i18n_pagename" content="common">
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <title></title>
+	    <script src="/public/js/jquery-2.1.4.min.js"></script>
+	    <script src="/public/js/wwt_style.js"></script>
+		<script src="public/js/layer/layer.js"></script>
+		<script src="public/js/setting.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js" ></script>
+	    <!--<link href="/public/css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" href="/public/css/wwt_style.css" />-->
+	    <link rel="stylesheet" href="public/css/sgc/sgc_style.css" />
+	</head>
+	<style type="text/css">
+		/*ul:after{
+			height: 0 !important;
+		}
+		ul:before{
+			height: 0 !important;
+		}
+		ul{
+			border-bottom: 5px solid #efefef;
+			border-top: 5px solid #efefef;
+			font-size: 16px;
+		}
+		.mui-navigate-right:after, .mui-push-left:after, .mui-push-right:after {
+		    font-family: Muiicons;
+		    font-size: 26px;
+		    line-height: 1;
+		    position: absolute;
+		    top: 50%;
+		    display: inline-block;
+		    -webkit-transform: translateY(-50%);
+		    transform: translateY(-50%);
+		    text-decoration: none;
+		    color: #bbb;
+		    -webkit-font-smoothing: antialiased;
+		}
+		.mui-table-view-cell:after {
+		    position: absolute;
+		    right: 0;
+		    bottom: 0;
+		    left: 0px;
+		    height: 1px;
+		    content: '';
+		    -webkit-transform: scaleY(.5);
+		    transform: scaleY(.5);
+		    background-color: #c8c7cc;
+		}
+		#file{
+			float: left;
+			width: 50%;
+			height: 100%;
+			position: absolute;
+			right: 0;
+			top: 0;
+			opacity: 0;
+		}
+		#img{
+			float: right;
+			width: 50px;
+			height: 50px;
+			border-radius: 25px;
+			margin-right: 30px;
+			box-shadow: 0 0 5px #ddd;
+		}*/
+		#file{
+		    float: left;
+		    width: 100%;
+		    height: 50px;
+		    position: absolute;
+		    right: 0;
+		    opacity: 0;
+		}
+		.uploadInput{
+			width: 80px;
+		    height: 80px;
+		    margin-top: 50px;
+		    opacity: 0;
+		}
+		.sgc_myInfo_exHead_img1{
+			border: 1px solid #f3f3f3;
+		}
+		.sgc_exlang{
+			width: 100%;
+			min-height: 680px;
+			position: fixed;
+			top: 0;
+			z-index: 9999;
+			background-color: rgba(0,0,0,.3);
+		}
+		.sgc_exlang_box{
+			width: 200px;
+			height: 150px;
+			background-color: #fff;
+			border-radius: 10px;
+			margin: 200px auto;
+		}
+		.sgc_exlang_box p{
+			line-height: 74px;
+			text-align: center;
+		}
+		.sgc_exlang_box p:first-child{
+			border-bottom: 1px solid #f3f3f3;
+		}
+		.sgc_selected_language{
+			color: #D9B140;
+		}
+	</style>
+	<body style="background-color: #F3F3F3;">
+		<div class="sgc_my_info">
+			<div class="nav_bg">
+				<div class="nav">
+					<a href="index.php?ctl=user&act=myinfo" style="color: #FFFFFF;"><img src="public/web/images/sgc/back_arrow.png" /><label class="i18n" name="i18nMyInfo"></label></a>
+				</div>
+			</div>
+			<p class="sgc_myInfo_exHead">
+				<img id="img" class="sgc_myInfo_exHead_img1" src="{%$user_info.user_avatar%}" />
+				<span class="sgc_myInfo_exHead_span">
+					<input name="{%$user_info.id%}" type="file" id="file"/>
+					<label class="i18n" name="i18nExHead"></label><img class="sgc_myInfo_exHead_img2" src="public/web/images/sgc/right_arrow.png" />
+				</span>
+			</p>
+			<a href="index.php?ctl=setting&amp;act=update_name">
+			<p class="sgc_myInfo_p" id="sgcExNickname">
+				<span class="sgc_myInfo_exHead_span1 i18n" name="i18nExNickname"></span>
+				<span class="sgc_myInfo_exHead_span">
+					{%$user_info.user_name%}<img class="sgc_myInfo_exHead_img2" src="public/web/images/sgc/right_arrow.png" />
+				</span>
+			</p>
+			</a>
+			<a class="rz_a" href="index.php?ctl=setting&amp;act=smrz">
+			<p class="sgc_myInfo_p" id="sgcSmrz">
+				<span class="sgc_myInfo_exHead_span1 i18n" name="i18nSmrz"></span>
+				<span class="sgc_myInfo_exHead_span">
+					<label class="rz_status"></label><img class="sgc_myInfo_exHead_img2" src="public/web/images/sgc/right_arrow.png" />
+				</span>
+			</p>
+			</a>
+			<p class="sgc_myInfo_p" id="sgcExlanguage">
+				<span class="sgc_myInfo_exHead_span1 i18n" name="i18nExLanguage"></span>
+				<span class="sgc_myInfo_exHead_span">
+					中文(简体)<img class="sgc_myInfo_exHead_img2" src="public/web/images/sgc/right_arrow.png" />
+				</span>
+			</p>
+		</div>
+		<div class="sgc_exlang hide">
+			<div class="sgc_exlang_box">
+				<p class="sgc_choose_lang zh">中文(简体)</p>
+				<p class="sgc_choose_lang en">English(US)</p>
+			</div>
+		</div>
+		<!--<div class="sgc_myInfo_exNickName hide">
+			<div class="nav_bg">
+				<div class="nav">
+					<a class="sgc_myInfo_exNickName_back" href="javascript:;" style="color: #FFFFFF;"><img src="img/back_arrow.png" />修改昵称</a>
+				</div>
+			</div>
+			<input class="sgc_myInfo_exNickName_input" type="text" value="昵称_01"/>
+			<div class="sgc_confirm_box" style="padding-top: 100px;">
+				<button class="sgc_confirm1" type="button">确定</button>
+			</div>
+		</div>
+		<div class="sgc_myInfo_smrz hide">
+			<div class="nav_bg">
+				<div class="nav">
+					<a class="sgc_myInfo_smrz_back" href="javascript:;" style="color: #FFFFFF;"><img src="img/back_arrow.png" />实名认证</a>
+				</div>
+			</div>
+			<div class="sgc_myInfo_smrz_upload">
+				<div class="sgc_myInfo_smrz_idcardTop">
+					<div class="exUpload"><img class="hide" src="" id="uploadFileT"/></div>
+					<input name="fileT" type="file" id="fileT" class="uploadInput"/>
+					<p style="margin-top: 20px;color: gray;">上传身份证正面照</p>
+				</div>
+				<div class="sgc_myInfo_smrz_idcardBottom">
+					<div class="exUpload"><img class="hide" src="" id="uploadFileB"/></div>
+					<input name="fileB" type="file" id="fileB" class="uploadInput"/>
+					<p style="margin-top: 20px;color: gray;">上传身份证背面照</p>
+				</div>
+				<div class="sgc_confirm_box" style="padding-top: 40px;">
+					<button class="sgc_confirm1" type="button">提交</button>
+				</div>
+			</div>
+		</div>-->
+	<!--<body>
+		<div class="nav">
+			<a href="javascript:window.location.href='index.php?ctl=user&act=myinfo'" class="back"></a>
+			设置
+			<a href="javascript:;" class="right"></a>
+		</div>
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell" >
+				<a href="javascript:;" class="mui-navigate-right" style="height: 70px;line-height: 50px;position: relative;">
+					修改头像
+					<input  name="{%$user_info.id%}" type="file" id="file"/>
+					<img id="img" src="{%$user_info.user_avatar%}"/>
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a href="index.php?ctl=setting&act=update_name" class="mui-navigate-right wwt_mui_a">
+					修改昵称
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view" style="border: 0;">
+			<li class="mui-table-view-cell" >
+				<a href="index.php?ctl=setting&act=update_login_pwd" class="mui-navigate-right" style="height: 70px;line-height: 50px;position: relative;">
+					修改登录密码
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a href="index.php?ctl=setting&act=update_trade_pwd" class="mui-navigate-right wwt_mui_a">
+					修改交易密码
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell" >
+				<a href="index.php?ctl=setting&act=address_gl" class="mui-navigate-right" style="height: 70px;line-height: 50px;position: relative;">
+					地址管理
+				</a>
+			</li>
+		</ul>
+		<button type="button" class="sign_out">退出登录</button>
+		<form id="user_id">
+			<input type="hidden" name="id" value="{%$user_info.id%}"/>
+		</form>
+		<div class="sign_out_con none">
+			<div>
+				<p class="out_con">您确定要退出吗？</p>
+				<p class="out_choose">
+					<a href="javascript:;" class="wwt_sign_close" onclick="off();">取消</a>
+					<a href="javascript:;" class="wwt_sign_sure" onclick="tuichu();">确认</a>
+				</p>
+			</div>
+		</div>-->
+	</body>
+	<script>
+		//认证状态
+		var rz_status = '{%$renzheng_status%}';
+		var userLanguage = getCookie("userLanguage");	
+		if(!userLanguage){
+			userLanguage = 'zh-CN';
+		}
+		if(rz_status == '1'){
+			if (userLanguage == 'en'){
+				$('.rz_status').text('Not Certified');
+			}else{
+				$('.rz_status').text('未认证');
+			}
+		}else if(rz_status == '0'){
+			if (userLanguage == 'en'){
+				$('.rz_status').text('Certified');
+			}else{
+				$('.rz_status').text('已认证');
+			}
+			$('.rz_a').attr('href','javascript:alert("您已认证，无法重复认证！");');
+		}
+		//修改头像
+		var user_id = $("#file").attr("name");
+		$("#file").change(function(){
+			var file = this.files[0];
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function(){
+				$("#img").attr("src",this.result);
+				$.ajax({
+					type:"post",
+					url:"api/index.php?ctl=image&act=user_avastar",
+					data:{"id":user_id,"image":this.result},
+					dataType:"json",
+					success:function(data){
+						if(data.status == true){
+							layer.msg(data.msg, function(){
+								window.location.reload();
+							});
+						}else{
+							layer.msg(data.msg, function(){
+							
+							});
+						}
+					}
+				});
+			}
+		})
+		if (getCookie("userLanguage") == 'en') {
+            $('.en').addClass('sgc_selected_language')
+        }else{
+        	$('.zh').addClass('sgc_selected_language')
+        }
+		//切换语言
+		$('#sgcExlanguage').click(function(e){
+			e.stopPropagation();
+			$('.sgc_exlang').removeClass('hide');
+		})
+		//窗口外点击事件  
+        $(document).click(function(e){  
+            var popup = $(".sgc_exlang_box");  
+            //判断事件对象不是弹窗对象  并且  弹窗对象不包含事件对象  
+            if (!popup.is(e.target) && popup.has(e.target).length == 0) {  
+                //则隐藏弹窗  
+                $('.sgc_exlang').addClass('hide');  
+             }    
+        }); 
+	</script>
+</html>

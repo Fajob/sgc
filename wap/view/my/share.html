@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta id="i18n_pagename" content="common">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!--<link rel="stylesheet" href="public/css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="public/css/media-100.css"/>
+		<link rel="stylesheet" type="text/css" href="public/css/login-style.css"/>
+		<link rel="stylesheet" type="text/css" href="public/css/wwt_style.css"/>-->
+		<link rel="stylesheet" href="public/css/sgc/sgc_style.css" />
+		<script src="public/js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js" ></script>
+		<style>				
+			/*body{
+				background: #f3f3f3;
+			}
+			.sps-share-picture-four img{
+				width: 255px;
+				height: 255px;
+			}*/
+			body{			
+				background: url(public/web/images/sgc/tg_bg.png);
+				background-size: 100%;
+				background-position: center bottom; 
+				background-attachment: fixed;
+				background-repeat: no-repeat;
+			}			
+			.sps-share-picture-four img{
+				height: 260px;
+				border: 1px solid #C0C0C0;
+			}
+		</style>
+	</head>
+	<body style="background-color: #D9B140;">
+		<div class="sgc_tg">
+			<div class="nav_bg">
+				<div class="nav">
+					<a href="javascript:history.back(-1)" style="color: #FFFFFF;"><img src="public/web/images/sgc/back_arrow.png" />
+						<label class="i18n" name="i18nPromotion"></label>
+					</a>
+				</div>
+			</div>
+			<div class="sps-share-picture" style="height: 490px;">
+				<div class="sps-share-picture-two i18n" name="i18nInvitingCode">
+					
+				</div>
+				<div class="sps-share-picture-three">
+					<b>{%$user_info.invite_code%}</b>
+				</div>
+				<div class="sps-share-picture-four">
+					<img src="{%$user_info.qr_url%}" />
+				</div>
+				<div class="sps-share-picture-five">
+					<!--<input type="text" value="http://sgc.quanx.cc/index.php?ctl=user&act=register&invite_code={%$user_info.invite_code%}"/>-->
+					<p style="width: 260px;margin: auto;white-space:nowrap;overflow: hidden;line-height: 30px;background-color: #efefef;" onclick="copy($(this).text())">http://sgchain.club/index.php?ctl=user&act=register&invite_code={%$user_info.invite_code%}</p>
+					<p><b class="i18n" name="i18nTgNotice"></b> </p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		/*长按复制*/
+			function copy(message) {
+	        	var input = document.createElement("input");
+	            input.value = message;
+	            document.body.appendChild(input);
+	            input.select();
+	            input.setSelectionRange(0, input.value.length), document.execCommand('Copy');
+	            document.body.removeChild(input);
+	            alert("复制成功");
+			}
+	</script>
+</html>

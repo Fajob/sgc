@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta id="i18n_pagename" content="common">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="public/css/sgc/sgc_style.css" />
+		<script type="text/javascript" src="public/js/jquery-2.1.4.min.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/sgc.js" ></script>
+		<script type="text/javascript" src="public/js/vue.js" ></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/jquery.i18n.properties.js"></script>
+		<script type="text/javascript" src="public/js/sgc/i18n/language.js"></script>
+		<title></title>
+		<style>
+			.rp_scRpay_dataT td{
+				font-size: 14px;
+			}
+			input{
+				outline: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="rp_scRpay">
+			<div class="nav_bg_color">
+				<div class="nav_bg">
+				<div class="nav">
+					<a href="index.php?ctl=user&amp;act=home" style="color: #FFFFFF;"><img src="public/web/images/sgc/back_arrow.png" />
+						<label class="i18n" name="i18nWallet"></label>
+					</a>
+				</div>
+				</div>
+				<div style="padding-left: 1rem;">
+				<p style="font-size: 18px;line-height: 100px;float: left;clear: right;">SGC</p>
+				<a style="color: #FFFFFF;float: right;height: 40px;clear: right;margin: 10px 0;" href="javascript:;"><span style="background-color: #3acc0c;float: left;" class="rp_scRpay_release i18n sgc_deposit" name="i18nSaveLive"></span></a>
+				<a style="color: #FFFFFF;float: right;height: 40px;clear: right;" href="index.php?ctl=translate&act=fixed_acc"><span style="float: left;" class="rp_scRpay_release i18n" name="i18nCheckFixed"></span></a>
+				<p style="clear: both;">
+					<span style="font-size: 30px;display:inline-block;margin-top: 6px;padding-bottom: 10px;">{%$a_coin%}</span>
+					<a style="color: #FFFFFF;" href="index.php?ctl=translate&act=wallet_acc"><span style="margin-top: 8px;margin-bottom: 8px;" class="rp_scRpay_release i18n" name="i18nCheckLive"></span></a> 
+				</p>
+				</div>
+				<div style="clear: both;"></div>
+				<!--<div class="rp_scRpay_word">
+					<table>
+						<tr>
+							<td>
+								<p class="i18n" name="i18nCurRate"></p>
+								<p>{%$userData.coin_lilv%}%</p>
+							</td>
+							<td class="i18n" name="i18nWalletNotice">
+								
+							</td>
+						</tr>
+					</table>
+				</div>-->
+			</div>
+			<div class="rp_scRpay_dataT">
+				<table style="border-collapse: collapse;" id="lie-1">
+					<tr>
+						<th class="i18n" name="i18nTime"></th>
+						<th class="i18n" name="i18nType"></th>
+						<th class="i18n" name="i18nNum"></th>
+					</tr>
+					{%foreach from=$coinLog item=item%}
+					<tr>
+						<td class="time">{%$item.createtime%}</td>
+						<td>{%$item.comment_type%}</td>
+						<td>{%$item.money%}</td>
+					</tr>
+					{%/foreach%}
+					
+				</table>
+				
+			</div>
+			<div class="sgc_slAcc_hz hide">
+				<div class="sgc_slAcc_hz_box">
+					<div class="sgc_slAcc_hz_input">
+						<p style="border-bottom: 1px solid #F3F3F3;">
+							<label class="i18n" name="i18nTsfIn"></label>
+							<span style="color: red;" class="i18n" name="i18nDepositAcc"></span></p>
+						<p><label class="i18n" name="i18nHoldNum1"></label><span style="float: right;"><span>{%$a_coin%}</span>SGC</span></p>
+						<p class="i18n" name="i18nInNum"></p>
+						<p style="border: 1px solid #000000;margin-bottom: 20px;">
+							<input style="width: 79%;" type="text" class="i18n-input money" selectname="i18nWriteNum" selectattr="placeholder" />
+							<span style="text-align: center;display: inline-block;width: 18%;">SGC</span> 
+						</p>
+						<p style="border: 1px solid #000000;margin-bottom: 10px;">
+							<input style="width: 62%;" type="password"  class="i18n-input user_pwd_trade" selectname="i18nTbTrade1" selectattr="placeholder" />
+							<span style="text-align: center;display: inline-block;width: 35%;" class="i18n" name="i18nTradePwd2"></span>
+						</p>
+						<span style="font-size: 14px;color: #7291E3;float: right;" class="i18n all_coin" name="i18nTsfAllin"></span>
+					</div>
+					<div class="sgc_slAcc_hz_btn">
+						<div class="sgc_slAcc_hz_cancel i18n" name="i18nCancel" style="border-right: 1px solid #D3D3D3;"></div>
+						<div class="i18n cr_hq" name="i18nConfirm" id="{%$user_info.id%}" style="color: #D9B140;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		$('.sgc_deposit').click(function(){
+			$('.sgc_slAcc_hz').removeClass('hide');
+		})
+		$('.sgc_slAcc_hz_cancel').click(function(){
+			$('.sgc_slAcc_hz').addClass('hide');
+			window.location.reload();
+		})
+		jQuery(function($){
+			var time = document.getElementsByClassName('time');
+			for(var i=0;i<time.length;i++){
+				time[i].innerText = date(time[i].innerText);
+			}
+	   	})
+		$(".cr_hq").click(function(){
+			var id = $(this).attr("id")
+			var old_coin = {%$a_coin%};
+			var money = $(".money").val();
+			var user_pwd_trade = $(".user_pwd_trade").val();
+			if(money > old_coin){
+				alert("所用余额不足");
+				$(".money").val("");
+				return false;
+			}else if(money == ""){
+				alert("数量不能为空");
+				return false;
+			}else{
+				$.post("api/index.php?ctl=user&act=a_coin_coin",{"id":id,"money":money,"user_pwd_trade":user_pwd_trade},function(data){
+					if(data){
+						if(data.status == true){
+							alert(data.msg);
+							window.location.reload();
+						}else{
+							alert(data.msg);
+							return false;
+						}
+					}
+				},"json")
+			}
+		})
+		$(".all_coin").click(function(){
+			$(".money").val({%$a_coin%});
+		})
+	</script>
+</html>

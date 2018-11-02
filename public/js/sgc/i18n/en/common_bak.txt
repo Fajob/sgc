@@ -1,0 +1,77 @@
+//登录
+i18nLang=中文(简体)
+i18nRegister=Register
+i18nPhoneNum=phone number
+i18nLogPwd=login password(6-20bits)
+i18nYzm=verify code
+i18nForgetPwd=Forget password?
+i18nLog=SIGN IN
+i18nServiceAgree1=Sign in to agree
+i18nServiceAgree2=ãService agreementã
+
+//注册
+i18nLogPwd1=set login password(6-20bits)
+i18nTradePwd=set trade password(6 bits number)
+i18nYzm1=SMS verification code
+i18nGetYzm=Get PIN
+
+//找回密码 
+i18nFindPwd=Find Password
+i18nNewLogPwd=set new login password(6-20bits)
+i18nConfirmNewLogPwd=confirm new login password
+
+//个人
+i18nSet=Set
+i18nPromotion=Promotion Center
+i18nShare=Share Center
+i18nProperties=Properties Center
+i18nOrder=Shopping Orders
+i18nShipping=Shipping Address
+i18nSafety=Safety Set
+i18nAbout=About Us
+i18nLogout=Sign Out
+i18nHome=HOME
+i18nMall=MALL
+i18nPersonal=PERSONAL
+i18nSignout=Sure to exit?
+i18nCancel=CANCEL
+i18nConfirm=CONFIRM
+
+//个人信息
+i18nMyInfo=My Info
+i18nExHead=Exchange Avatar
+i18nExNickname=Exchange Nickname
+i18nSmrz=Verified
+i18nExLanguage=Switch Language
+
+//主页
+i18nLeftCommunity=Left Community
+i18nRightCommunity=Right Community
+i18nTotalPerformance=Totalï¼
+i18nDayPerformance=Dayï¼
+i18nSgcTrend=SGC Trend
+i18nCurPrice=Current Price
+i18nTradeVolume=24H-TradeVol
+i18nChanges=24H-UpsDowns
+i18nCbtb=Charge-Take
+i18nWallet=Wallet Acc
+i18nSl=Arithmetic Acc
+i18nInvite=Inviting
+i18nHomeNotice=(Click on picture or address to copy and share)
+
+//充币提币
+i18nCbtb1=Charge Take
+i18nCb=CHARGE
+i18nTb=TAKE
+i18nWalletacc=wallet acc:
+i18nTbAddress=charge address:
+i18nTbAddr=Fill in the bit payment wallet address
+i18nTb1=charge number:
+i18nTradePwd1=trade password:
+i18nTbTrade=please enter the transaction password
+i18nTbVerified=please enter verification code
+i18nTbRecord=TAKE RECORD
+i18nConfirmTb=CONFIRM
+i18nSmts=Real name hint
+i18nSmtsCont=Dear user, it is detected that you have not yet conducted real-name authentication. You cannot use this function temporarily. To ensure the security of your account assets, please perform real-name authentication. Otherwise, you will not be able to use this function. Thank you for your cooperation!
+i18nGoVerified=GO VERIFIED
